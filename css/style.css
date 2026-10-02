@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(24, 209, 0, 0.466);
+}
+
+.boneco {
+    display: grid;
+    grid-template-columns: repeat(10, 3px);
+    grid-template-rows: repeat(10, 3px);
+}
+.arvore {
+    display: grid;
+    grid-template-columns: repeat(10, 3px);
+    grid-template-rows: repeat(10, 3px);
+}
+
+.pixel {
+    width: 3px;
+    height: 3px;
+}
+
+.pele {
+    background: #f2b36f;
+}
+
+.cabelo {
+    background: #4b2a18;
+}
+
+.roupa {
+    background: #2979ff;
+}
+
+.calca {
+    background: #333;
+}
+
+.sapato {
+    background: #111;
+}
+.olho {
+    background: #000;
+}
+.folhac {
+    background: #17b303;
+}
+.folhas {
+    background: #062901;
+}
+.tronco {
+    background: #241901;
+}
