@@ -5,10 +5,29 @@
 }
 
 body {
+    overflow: hidden;
     margin: 0px;
     height: 100vh;
     display: flex;
     background-color: rgba(9, 68, 1, 0.87);
+}
+
+.inventario {
+    position: fixed;
+    display: none;
+
+    grid-template-columns: repeat(9, 20px);
+    grid-template-rows: repeat(4, 20px);
+
+    z-index: 100;
+    border: 3px solid #000;
+    background-color: #000000a8;
+
+    right: 10px;
+    bottom: 10px;
+
+    gap: 1px;
+    padding: 2px;
 }
 
 .boneco {
@@ -23,12 +42,48 @@ body {
     display: grid;
     grid-template-columns: repeat(10, 3px);
     grid-template-rows: repeat(10, 3px);
-    left: 100px;
-    top: 50px;
+    border: 1px solid red;
 }
 .pixel {
     width: 3px;
     height: 3px;
+}
+.pixel-inv {
+    width: 20px;
+    height: 20px;
+}
+
+.infos{
+    position: fixed;
+    display: flex;
+    z-index: 100;
+    left: 10px;
+    bottom: 10px;
+    flex-direction: column;
+    gap: 5px;
+}
+.fome{
+    display: flex;
+    z-index: 100;
+    background-color: #00000077;
+    left: 10px;
+    bottom: 0px;
+    justify-content: left;
+    align-items: left;
+    padding: 1px;
+    border: 2px solid #000;
+}
+
+.vida{
+    display: flex;
+    z-index: 100;
+    background-color: #00000077;
+    left: 10px;
+    bottom: 10px;
+    justify-content: left;
+    align-items: left;
+    padding: 1px;
+    border: 2px solid #000;
 }
 
 .pele {
@@ -59,6 +114,9 @@ body {
 .folhac {
     background: #17b303;
     z-index: 2;
+}
+.nada{
+    background:#333;
 }
 .folhas {
     background: #062901;

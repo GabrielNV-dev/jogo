@@ -1,5 +1,5 @@
 export const boneco = {
-"frente":[
+"frente":[[
 "   CCCC   ",
 "  CCCCCC  ",
 "  PPPPPP  ",
@@ -7,10 +7,22 @@ export const boneco = {
 "  PPPPPP  ",
 "    PP    ",
 "  PRRRRP  ",
-"  PRRRRP  ",
+"  PRRRRR  ",
 "  RRRRRR  ",
 "  KK  KK  ",
 "  KK  KK  ",],
+[
+"   CCCC   ",
+"  CCCCCC  ",
+"  PPPPPP  ",
+"  PIPPIP  ",
+"  PPPPPP  ",
+"    PP    ",
+"  PRRRRP  ",
+"  RRRRRP  ",
+"  RRRRRR  ",
+"  KK  KK  ",
+"  KK  KK  ",]],
 
 "costas":[
 "   CCCC   ",
@@ -37,7 +49,7 @@ export const boneco = {
 "    RR    ",
 "    RR    ",
 "    KK    ",
-"    KK    ",
+"   KKK    ",
 ],
 
 "direita":[
@@ -51,7 +63,7 @@ export const boneco = {
 "    RR    ",
 "    RR    ",
 "    KK    ",
-"   KKK    ",
+"    KKK   ",
 ]};
 export const arvore = {
 padrao:[
