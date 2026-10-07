@@ -1,0 +1,8 @@
+.arvore {
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(10, 3px);
+    grid-template-rows: repeat(10, 3px);
+    border: 1px solid red;
+}
+

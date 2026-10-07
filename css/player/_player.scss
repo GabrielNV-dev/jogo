@@ -1,0 +1,27 @@
+
+.boneco {
+    display: grid;
+    grid-template-columns: repeat(10, 3px);
+    grid-template-rows: repeat(10, 3px);
+    position: absolute;
+    z-index: 1;
+}
+.pele {
+    background: #f2b36f;
+}
+
+.cabelo {
+    background: #4b2a18;
+}
+
+.roupa {
+    background: #2979ff;
+}
+
+.calca {
+    background: #333;
+}
+
+.sapato {
+    background: #111;
+}

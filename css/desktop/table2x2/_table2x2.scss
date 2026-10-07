@@ -1,0 +1,7 @@
+
+#table2x2{
+
+    width: 50px;
+    grid-template-columns: repeat(2, 20px);
+    grid-template-rows: repeat(2, 20px);
+}

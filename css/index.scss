@@ -1,0 +1,44 @@
+@use './arvore/avore' as *;
+@use './desktop/hotbar/hotbar' as *;
+@use './desktop/desktop' as *;
+@use './desktop/inventario/inventario' as *;
+@use './desktop/table2x2/table2x2' as *;
+@use './hud/infos/fome' as *;
+@use './hud/infos/vida' as *;
+@use './hud/infos' as *;
+@use './pixeis/pixel' as *;
+@use './player/player' as *;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    margin: 0px;
+    height: 100vh;
+    display: flex;
+    background-color: rgba(9, 68, 1, 0.87);
+}
+
+.branco {
+    background: #ffffff;
+}
+.olho {
+    background: #000;
+}
+.folhac {
+    background: #17b303;
+    z-index: 2;
+}
+.nada{
+    background:#333;
+}
+.folhas {
+    background: #062901;
+}
+.tronco {
+    background: #241901;
+}
