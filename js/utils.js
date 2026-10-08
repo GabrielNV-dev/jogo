@@ -1,20 +1,9 @@
-export const cores = {
-    C: "cabelo",
-    P: "pele",
-    I: "olho",
-    R: "roupa",
-    K: "calca",
-    F: "folhac",
-    O: "folhas",
-    T: "tronco",
-    B: "branco"
-};
 export const itens = {
     0: "nada",
     1: "madeira"
 }
 
-export function atualizar(sprit, id) {
+export function atualizar(sprit, id, cores) {
     const elemento = document.getElementById(id);
     elemento.innerHTML = ""
     sprit.forEach(linha => {

@@ -1,9 +1,98 @@
+.branco {
+  background-color: white;
+  z-index: 2;
+}
+
+.preto {
+  background-color: black;
+  z-index: 2;
+}
+
+.cinza-claro {
+  background-color: rgb(150, 150, 150);
+  z-index: 2;
+}
+
+.cinza {
+  background-color: rgb(112, 112, 112);
+  z-index: 2;
+}
+
+.cinza-escuro {
+  background-color: rgb(44, 44, 44);
+  z-index: 2;
+}
+
 .arvore {
   position: absolute;
   display: grid;
   grid-template-columns: repeat(10, 3px);
-  grid-template-rows: repeat(10, 3px);
   border: 1px solid red;
+}
+
+.folhac {
+  background: #17b303;
+  z-index: 4;
+}
+
+.folhas {
+  background: #062901;
+}
+
+.tronco {
+  background: #241901;
+}
+
+.pedra {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(10, 3px);
+  border: 1px solid red;
+}
+
+.diamante {
+  background-color: #00e5ff;
+  z-index: 2;
+}
+
+.pedra-m {
+  background-color: rgb(150, 150, 150);
+  z-index: 2;
+}
+
+.ferro {
+  background-color: #ffffff;
+  z-index: 2;
+}
+
+.ouro {
+  background-color: #ffd700;
+  z-index: 2;
+}
+
+.carvao {
+  background-color: #1a1a1a;
+  z-index: 2;
+}
+
+.rubi {
+  background-color: #e0002a;
+  z-index: 2;
+}
+
+.obamium {
+  background-color: #7b2cff;
+  z-index: 2;
+}
+
+.esmeralda {
+  background-color: #00c853;
+  z-index: 2;
+}
+
+.prata {
+  background-color: #c0c0c0;
+  z-index: 2;
 }
 
 #hotbar {
@@ -15,6 +104,15 @@
   transform: translateX(-50%);
   grid-template-columns: repeat(8, 40px);
   grid-template-rows: 40px;
+}
+
+.pixel-hotbar {
+  width: 40px;
+  height: 40px;
+}
+
+.selecionado {
+  border: 1px solid wheat;
 }
 
 .desktop {
@@ -51,43 +149,6 @@
   grid-template-rows: repeat(2, 20px);
 }
 
-.pixel {
-  width: 3px;
-  height: 3px;
-}
-
-.boneco {
-  display: grid;
-  grid-template-columns: repeat(10, 3px);
-  grid-template-rows: repeat(10, 3px);
-  position: absolute;
-  z-index: 1;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  overflow: hidden;
-  margin: 0px;
-  height: 100vh;
-  display: flex;
-  background-color: rgba(9, 68, 1, 0.87);
-}
-
-.infos {
-  position: fixed;
-  display: flex;
-  z-index: 100;
-  left: 10px;
-  bottom: 10px;
-  flex-direction: column;
-  gap: 5px;
-}
-
 .fome {
   display: flex;
   z-index: 100;
@@ -112,16 +173,40 @@ body {
   border: 2px solid #000;
 }
 
+.infos {
+  position: fixed;
+  display: flex;
+  z-index: 100;
+  left: 10px;
+  bottom: 10px;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.pixel {
+  width: 3px;
+  height: 3px;
+}
+
+.boneco {
+  display: grid;
+  grid-template-columns: repeat(10, 3px);
+  position: absolute;
+}
+
 .pele {
   background: #f2b36f;
+  z-index: 3;
 }
 
 .cabelo {
   background: #4b2a18;
+  z-index: 3;
 }
 
 .roupa {
   background: #2979ff;
+  z-index: 3;
 }
 
 .calca {
@@ -132,27 +217,25 @@ body {
   background: #111;
 }
 
-.branco {
-  background: #ffffff;
-}
-
 .olho {
   background: #000;
-}
-
-.folhac {
-  background: #17b303;
-  z-index: 2;
+  z-index: 3;
 }
 
 .nada {
   background: #333;
 }
 
-.folhas {
-  background: #062901;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.tronco {
-  background: #241901;
+body {
+  overflow: hidden;
+  margin: 0px;
+  height: 100vh;
+  display: flex;
+  background-color: rgba(9, 68, 1, 0.87);
 }/*# sourceMappingURL=index.css.map */

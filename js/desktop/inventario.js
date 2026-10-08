@@ -1,5 +1,5 @@
 
-import { cores, itens, atualizar } from "../utils.js";
+import { itens, atualizar } from "../utils.js";
 import { table2x2 } from "./table2x2.js";
 import { hotbar } from "./hotbar.js";
 let vizu_inv = 0

@@ -1,5 +1,14 @@
 import { arvore } from "./spr_arvore.js";
-import { cores, itens, atualizar } from "../utils.js";
+import { itens, atualizar } from "../utils.js";
+
+const cores = {
+    F: "folhac",
+    O: "folhas",
+    T: "tronco",
+    B: "branco",
+    I: "preto"
+};
+
 
 function criarArvore(sprit, x, y, id) {
     const elemento = document.createElement("div");
@@ -26,10 +35,9 @@ function criarArvore(sprit, x, y, id) {
 
     document.body.appendChild(elemento);
 }
-
 const arvores = [
-    { x: 100, y: 200 },
-    { x: 1000, y: 1450 },
+    { x: 100, y: 100 },
+    { x: 2500, y: 1800 },
     { x: 700, y: 250 },
     { x: 500, y: 400 },
 ];
@@ -42,7 +50,6 @@ document.addEventListener("keydown", (event) => {
 
     const player = document.getElementById("boneco")
     var posicao = player.getBoundingClientRect();
-    posicao = player.getBoundingClientRect();
 
     document.querySelectorAll(".arvore").forEach(item2 => {
         const rect2 = item2.getBoundingClientRect();
@@ -55,10 +62,10 @@ document.addEventListener("keydown", (event) => {
             distanciaY >= -65.5 &&
             distanciaY <= -25.5
         ) {
-            atualizar(arvore.interacao, item2.id)
+            atualizar(arvore.interacao, item2.id, cores)
 
         } else {
-            atualizar(arvore.padrao, item2.id)
+            atualizar(arvore.padrao, item2.id, cores)
         }
     })
 });
