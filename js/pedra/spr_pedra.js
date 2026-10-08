@@ -22,5 +22,17 @@ interacao : [
 " GCDDDDD  ",
 " GMMDDMD  ",
 " GCDDDDMD ",
-]
+],
+fracasso:[
+"  IIIIII  ",
+"  IBBBBI  ",
+"  IBIIII  ",
+"  IBBBBI  ",
+"  IBIIII  ",
+"  IBBBBI  ",
+"  IIIIII  ",
+" XXXXXXX  ",
+" XXXXXXX  ",
+" XXXXXXXX ",
+],
 }

@@ -1,5 +1,9 @@
 import { itens, atualizar } from "../utils.js";
 
+export var hotbar = Array.from({ length: 8 }, () =>
+    Array.from({ length: 1 }, () => 0)
+);
+
 export function selecionar(indice) {
     selecionado = indice;
     console.log(selecionado)
@@ -10,11 +14,7 @@ export var selecionado = 0;
 export function mao(){
     return hotbar[selecionado]
 }
-
-export var hotbar = Array.from({ length: 8 }, () =>
-    Array.from({ length: 1 }, () => 0)
-);
-
+hotbar[3] = "picareta-obamium"
 export async function atualizar_hotbar() {
     document.getElementById("hotbar").innerHTML = ""
 

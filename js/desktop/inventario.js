@@ -8,6 +8,26 @@ export var inventario = Array.from({ length: 9 }, () =>
     Array.from({ length: 4 }, () => 0)
 );
 
+export function espaco(){
+    if (!inventario.some(linha => linha.includes(0))) {
+        return false
+    }
+    return true
+}
+export function receber_item(drop) {
+
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 4; j++) {
+            if (inventario[i][j] == 0) {
+                inventario[i][j] = drop
+
+                console.table(inventario)
+                atualizar_inv()
+                break
+            }
+        }
+    }
+}
 export function atualizar_inv() {
     document.getElementById("inventario").innerHTML = ""
     document.getElementById("table2x2").innerHTML = ""
