@@ -31,8 +31,8 @@ fracasso:[
 "  IBIIII  ",
 "  IBBBBI  ",
 "  IIIIII  ",
-" XXXXXXX  ",
-" XXXXXXX  ",
-" XXXXXXXX ",
+"  XXXXXX  ",
+"  XXXXXX  ",
+"  XXXXXXX ",
 ],
 }

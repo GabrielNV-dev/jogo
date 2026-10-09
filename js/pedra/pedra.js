@@ -175,8 +175,8 @@ document.addEventListener("keydown", (event) => {
         ) {
             atualizar_pedra(pedra.interacao, item2.id, cores)
             
-            if (event.key == "e") {
-                press_E("minerio", cores[minerio], ferramentas[minerio], item2.id)
+            if (event.key == "e") { // essa bct de um é a quantidade dropada, arruma pra cada minerio dps essa prr
+                press_E("minerio", cores[minerio], ferramentas[minerio], item2.id, 1)
             }
 
         } else {
