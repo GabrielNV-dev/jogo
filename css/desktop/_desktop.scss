@@ -1,0 +1,25 @@
+.desktop {
+    position: fixed;
+    display: flex;
+    z-index: 100;
+    right: 10px;
+    bottom: 10px;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-end
+}
+
+.table2x2,
+.hotbar,
+.inventario {
+    display: none;
+
+    grid-template-columns: repeat(9, 20px);
+    grid-template-rows: repeat(4, 20px);
+    
+    border: 3px solid #000;
+    background-color: #000000a8;
+
+    gap: 1px;
+    padding: 2px;
+}
