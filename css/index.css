@@ -103,20 +103,36 @@
   position: fixed;
   z-index: 100;
   display: grid;
-  bottom: 0;
+  grid-template-columns: repeat(8, 44px);
+  grid-template-rows: 44px;
+  gap: 4px;
+  padding: 6px;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
-  grid-template-columns: repeat(8, 40px);
-  grid-template-rows: 40px;
+  background-color: rgba(0, 0, 0, 0.6588235294);
+  border: 2px solid #000;
 }
 
-.pixel-hotbar {
-  width: 40px;
-  height: 40px;
+#hotbar.item-inv {
+  width: 44px;
+  height: 44px;
+  box-sizing: border-box;
+  display: grid;
+  place-content: center;
+  position: relative;
+}
+
+#hotbar.pixel-inv {
+  width: 4px;
+  height: 4px;
+  padding: 0;
+  margin: 0;
 }
 
 .selecionado {
-  border: 1px solid wheat;
+  outline: 2px solid wheat;
+  outline-offset: 1px;
 }
 
 .desktop {
@@ -142,15 +158,42 @@
   padding: 2px;
 }
 
+.item-inv {
+  display: grid;
+  grid-template-columns: repeat(10, 2px);
+  grid-template-rows: repeat(10, 2px);
+  position: relative;
+  gap: 0px;
+}
+
 .pixel-inv {
-  width: 20px;
-  height: 20px;
+  width: 2px;
+  height: 2px;
+}
+
+.quantidade-item {
+  position: absolute;
+  right: 2px;
+  bottom: 1px;
+  z-index: 10;
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 1;
+  text-shadow: -1px -1px 1px black, 1px -1px 1px black, -1px 1px 1px black, 1px 1px 1px black;
+  pointer-events: none;
 }
 
 #table2x2 {
-  width: 50px;
+  display: none;
+  position: relative;
   grid-template-columns: repeat(2, 20px);
   grid-template-rows: repeat(2, 20px);
+  gap: 1px;
+  padding: 2px;
+  border: 3px solid #000;
+  background-color: rgba(0, 0, 0, 0.6588235294);
 }
 
 .fome {
@@ -228,6 +271,30 @@
 
 .nada {
   background: #333;
+}
+
+.diamante-azul-escuro {
+  background-color: rgb(1, 48, 51);
+}
+
+.diamante-azul-claro {
+  background-color: aqua;
+}
+
+.diamante-sombra {
+  background-color: rgb(26, 122, 92);
+}
+
+.madeira-marrom-escuro {
+  background-color: rgb(85, 53, 3);
+}
+
+.madeira-marrom-claro {
+  background-color: rgb(109, 73, 6);
+}
+
+.madeira-sombra {
+  background-color: rgb(71, 51, 14);
 }
 
 * {

@@ -1,16 +1,17 @@
-export const itens = {
-    0: "nada",
-    1: "madeira",
-    2:"picareta-obamium", 
-    3:"picareta-rubi", 
-    4:"picareta-esmeralda", 
-    5:"picareta-diamante", 
-    6:"picareta-ouro", 
-    7:"picareta-ferro", 
-    9:"picareta-prata", 
-    10:"picareta-pedra", 
-    11:"picareta-madeira"
-}
+export const itens = [
+    "nada",
+    "madeira",
+    "diamantes",
+    "picareta-obamium", 
+    "picareta-rubi", 
+    "picareta-esmeralda", 
+    "picareta-diamante", 
+    "picareta-ouro", 
+    "picareta-ferro", 
+    "picareta-prata", 
+    "picareta-pedra", 
+    "picareta-madeira"
+]
 export const picaretas = {
     "picareta-obamium" : 45, 
     "picareta-rubi" : 40,
@@ -22,13 +23,13 @@ export const picaretas = {
     "picareta-pedra" : 10,
     "picareta-madeira" : 5
 }
-export function atualizar(sprit, id, cores) {
+export function atualizar(sprit, id, cores, pixel_tipo = "pixel") {
     const elemento = document.getElementById(id);
     elemento.innerHTML = ""
     sprit.forEach(linha => {
         [...linha].forEach(pixel => {
             const div = document.createElement("div");
-            div.classList.add("pixel");
+            div.classList.add(pixel_tipo);
 
             if (cores[pixel]) {
                 div.classList.add(cores[pixel]);

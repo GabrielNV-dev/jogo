@@ -18,6 +18,9 @@
 @use './player/player' as *;
 
 @use './itens/pixel-itens' as *;
+
+@use './itens/diamante/cores-diamante' as *;
+@use './itens/madeira/cores-madeira' as *;
 * {
     margin: 0;
     padding: 0;

@@ -1,21 +1,40 @@
-
 #hotbar {
     position: fixed;
     z-index: 100;
     display: grid;
 
-    bottom: 0;
-    left: 50%;
+    grid-template-columns: repeat(8, 44px);
+    grid-template-rows: 44px;
 
+    gap: 4px;
+    padding: 6px;
+
+    bottom: 10px;
+    left: 50%;
     transform: translateX(-50%);
 
-    grid-template-columns: repeat(8, 40px);
-    grid-template-rows: 40px;
+    background-color: #000000a8;
+    border: 2px solid #000;
 }
-.pixel-hotbar {
-    width: 40px;
-    height: 40px;
+
+#hotbar.item-inv {
+    width: 44px;
+    height: 44px;
+    box-sizing: border-box;
+
+    display: grid;
+    place-content: center;
+    position: relative;
 }
-.selecionado{
-    border: 1px solid wheat;
+
+#hotbar.pixel-inv {
+    width: 4px;
+    height: 4px;
+    padding: 0;
+    margin: 0;
+}
+
+.selecionado {
+    outline: 2px solid wheat;
+    outline-offset: 1px;
 }

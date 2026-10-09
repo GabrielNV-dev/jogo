@@ -6,10 +6,10 @@
     export function press_E(tipo, drop, ferramentas, identificacao, quantidade) {
             if (tipo === "minerio") {
                 if (ferramentas.includes(mao()) && espaco()) {
-                    console.log(vida)
+
                     diminuir_vida(picaretas[mao()])
-                    console.log(vida)
                     informar_vida(identificacao, vida)
+
                     if(vida <= 0){
                         receber_item(drop, quantidade)
                         document.getElementById(identificacao).remove()
