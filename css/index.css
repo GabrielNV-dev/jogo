@@ -341,28 +341,40 @@
   background-color: rgb(53, 52, 52);
 }
 
-.diamante-azul-escuro {
-  background-color: rgb(1, 48, 51);
-}
-
-.diamante-azul-claro {
-  background-color: aqua;
-}
-
-.diamante-sombra {
-  background-color: rgb(26, 122, 92);
-}
-
-.preto {
+.minerio-preto {
   background-color: black;
 }
 
-.ferro-sombra {
-  background-color: rgb(124, 124, 124);
+.minerio-prata {
+  background-color: rgb(197, 197, 197);
 }
 
-.ferro-claro {
-  background-color: rgb(217, 217, 217);
+.minerio-ferro {
+  background-color: white;
+}
+
+.minerio-ouro {
+  background-color: yellow;
+}
+
+.minerio-diamante {
+  background-color: rgb(3, 104, 255);
+}
+
+.minerio-esmeralda {
+  background-color: rgb(1, 194, 1);
+}
+
+.minerio-rubi {
+  background-color: rgb(243, 52, 52);
+}
+
+.minerio-obamium {
+  background-color: purple;
+}
+
+.minerio-carvao {
+  background-color: rgb(0, 0, 0);
 }
 
 * {

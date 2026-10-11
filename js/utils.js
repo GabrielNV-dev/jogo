@@ -1,7 +1,6 @@
 export const itens = [
     "nada",
     "madeira",
-    "diamantes",
     "pedra-m",
     "picareta-obamium", 
     "picareta-rubi", 
@@ -11,15 +10,16 @@ export const itens = [
     "picareta-ferro", 
     "picareta-prata", 
     "picareta-pedra", 
+    "picareta-madeira",
     "ferro",
     "ouro",
     "carvao",
     "rubi",
     "obamium",
     "esmeralda",
+    "diamante",
     "prata",
     "vermelho-efeito",
-    "picareta-madeira"
 ]
 export const picaretas = {
     "picareta-obamium" : 45, 

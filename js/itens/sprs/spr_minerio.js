@@ -1,9 +1,7 @@
 export const minerio = {
     cores: {
-        V: "preto",
-        K: "picareta-azul-claro",
-        P: "ferro-sombra",
-        C: "ferro-claro",
+        V: "minerio-preto",
+        P: "minerio-sombra",
         N: "nada"
     },
     padrao: [

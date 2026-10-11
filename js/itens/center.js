@@ -10,9 +10,9 @@ function seletor(item) {
     return copia;
 }
 
-function ewew(item) {
-    const copia = structuredClone(picareta);
-    copia.cores.V = item;
+function seletor_minerio(item) {
+    const copia = structuredClone(minerio);
+    copia.cores.C = item;
     return copia;
 }
 
@@ -28,13 +28,15 @@ export const referencia = {
     "picareta-esmeralda": seletor("picareta-esmeralda"),
     "picareta-rubi": seletor("picareta-rubi"),
     "picareta-obamium": seletor("picareta-obamium"),
-    "ferro": seletor("minerio-ferro"),
-    "picareta-ferro": seletor("picareta-ferro"),
-    "picareta-ouro": seletor("picareta-ouro"),
-    "picareta-diamante": seletor("picareta-diamante"),
-    "picareta-esmeralda": seletor("picareta-esmeralda"),
-    "picareta-rubi": seletor("picareta-rubi"),
-    "picareta-obamium": seletor("picareta-obamium"),
+
+    "ferro": seletor_minerio("minerio-ferro"),
+    "diamante": seletor_minerio("minerio-diamante"),
+    "ouro": seletor_minerio("minerio-ouro"),
+    "carvao": seletor_minerio("minerio-carvao"),
+    "rubi": seletor_minerio("minerio-rubi"),
+    "obamium": seletor_minerio("minerio-obamium"),
+    "prata": seletor_minerio("minerio-prata"),
+    "esmeralda": seletor_minerio("minerio-esmeralda"),
     
 }
 export const nada = {
