@@ -7,7 +7,7 @@ export function selecionar(indice) {
 }
 
 
-hotbar[0] = ["picareta-madeira",1]
+hotbar[0] = ["madeira",1]
 hotbar[1] = ["picareta-pedra",1]
 hotbar[2] = ["picareta-prata",1]
 hotbar[3] = ["picareta-ferro",1]

@@ -1,5 +1,6 @@
 import { arvore } from "./spr_arvore.js";
 import { itens, atualizar } from "../utils.js";
+import { press_E } from "../interacao/press_E.js";
 
 const cores = {
     F: "folhac",
@@ -9,6 +10,7 @@ const cores = {
     I: "preto"
 };
 
+const ferramentas = ["machado-obamium", "machado-rubi", "machado-esmeralda", "machado-diamante", "machado-ouro", "machado-ferro", "machado-prata", "machado-pedra", "machado-madeira"]
 
 function criarArvore(sprit, x, y, id) {
     const elemento = document.createElement("div");
@@ -63,7 +65,9 @@ document.addEventListener("keydown", (event) => {
             distanciaY <= -25.5
         ) {
             atualizar(arvore.interacao, item2.id, cores)
-
+            if(event.key == "e"){
+                press_E("arvore", "madeira", ferramentas, item2.id, 1)
+            }
         } else {
             atualizar(arvore.padrao, item2.id, cores)
         }

@@ -154,15 +154,15 @@ document.addEventListener("keydown", (event) => {
         const rect2 = item2.getBoundingClientRect();
         const minerio = minerios.find(minerio => item2.classList.contains(minerio));
         const ferramentas = {
-            P: ["picareta-obamium", "picareta-rubi", "picareta-esmeralda", "picareta-diamante", "picareta-ouro", "picareta-ferro", "picareta-ferro", "picareta-prata", "picareta-pedra", "picareta-madeira"],
+            P: ["picareta-obamium", "picareta-rubi", "picareta-esmeralda", "picareta-diamante", "picareta-ouro", "picareta-ferro", "picareta-prata", "picareta-pedra", "picareta-madeira"],
             A: ["picareta-obamium", "picareta-rubi", "picareta-esmeralda", "picareta-diamante", "picareta-ouro"],
-            K: ["picareta-obamium", "picareta-rubi", "picareta-esmeralda", "picareta-diamante", "picareta-ouro", "picareta-ferro", "picareta-ferro", "picareta-prata"],
+            K: ["picareta-obamium", "picareta-rubi", "picareta-esmeralda", "picareta-diamante", "picareta-ouro", "picareta-ferro", "picareta-prata"],
             J: ["picareta-obamium", "picareta-rubi", "picareta-esmeralda", "picareta-diamante", "picareta-ouro", "picareta-ferro",],
-            H: ["picareta-obamium", "picareta-rubi", "picareta-esmeralda", "picareta-diamante", "picareta-ouro", "picareta-ferro", "picareta-ferro", "picareta-prata", "picareta-pedra"],
+            H: ["picareta-obamium", "picareta-rubi", "picareta-esmeralda", "picareta-diamante", "picareta-ouro", "picareta-ferro", "picareta-prata", "picareta-pedra"],
             N: ["picareta-obamium", "picareta-rubi", "picareta-esmeralda"],
             Q: ["picareta-obamium", "picareta-rubi",],
             R: ["picareta-obamium", "picareta-rubi", "picareta-esmeralda", "picareta-diamante"],
-            U: ["picareta-obamium", "picareta-rubi", "picareta-esmeralda", "picareta-diamante", "picareta-ouro", "picareta-ferro", "picareta-ferro", "picareta-prata", "picareta-pedra"]
+            U: ["picareta-obamium", "picareta-rubi", "picareta-esmeralda", "picareta-diamante", "picareta-ouro", "picareta-ferro", "picareta-prata", "picareta-pedra"]
         }
 
         const distanciaX = rect2.left - posicao.right;

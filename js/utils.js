@@ -21,7 +21,7 @@ export const itens = [
     "prata",
     "vermelho-efeito",
 ]
-export const picaretas = {
+export const picaretas_infos = {
     "picareta-obamium" : 45, 
     "picareta-rubi" : 40,
     "picareta-esmeralda" : 35,
@@ -32,6 +32,18 @@ export const picaretas = {
     "picareta-pedra" : 10,
     "picareta-madeira" : 5
 }
+export const machados_infos = {
+    "machado-obamium": 45,
+    "machado-rubi": 40, 
+     "machado-esmeralda": 35,
+    "machado-diamante": 30, 
+     "machado-ouro": 25 ,
+    "machado-ferro": 20,
+    "machado-prata" : 15,
+     "machado-pedra": 10,
+     "machado-madeira": 5
+    }
+
 export function atualizar(sprit, id, cores, pixel_tipo = "pixel") {
     const elemento = document.getElementById(id);
     elemento.innerHTML = ""
