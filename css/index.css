@@ -329,16 +329,16 @@
   background-color: rgb(109, 73, 6);
 }
 
-.preto {
-  background-color: black;
+.pedra-borda {
+  background-color: rgb(29, 29, 29);
 }
 
-.ferro-sombra {
-  background-color: rgb(124, 124, 124);
+.pedra-cinza {
+  background-color: grey;
 }
 
-.ferro-claro {
-  background-color: rgb(217, 217, 217);
+.pedra-rocha {
+  background-color: rgb(53, 52, 52);
 }
 
 .diamante-azul-escuro {
@@ -351,6 +351,18 @@
 
 .diamante-sombra {
   background-color: rgb(26, 122, 92);
+}
+
+.preto {
+  background-color: black;
+}
+
+.ferro-sombra {
+  background-color: rgb(124, 124, 124);
+}
+
+.ferro-claro {
+  background-color: rgb(217, 217, 217);
 }
 
 * {
