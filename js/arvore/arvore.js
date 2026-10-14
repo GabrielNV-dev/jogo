@@ -66,7 +66,7 @@ document.addEventListener("keydown", (event) => {
         ) {
             atualizar(arvore.interacao, item2.id, cores)
             if(event.key == "e"){
-                press_E("arvore", "madeira_bruta", ferramentas, item2.id, 1)
+                press_E("arvore", "madeira_bruta", ferramentas, item2.id, 3)
             }
         } else {
             atualizar(arvore.padrao, item2.id, cores)

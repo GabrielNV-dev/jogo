@@ -35,6 +35,6 @@
 }
 
 .selecionado {
-    outline: 2px solid wheat;
-    outline-offset: 1px;
+    outline: 1px solid wheat;
+    z-index: 1;
 }

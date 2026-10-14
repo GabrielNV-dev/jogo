@@ -7,14 +7,14 @@ export function selecionar(indice) {
 }
 
 
-hotbar[1] = ["picareta-pedra",1]
-hotbar[2] = ["picareta-prata",1]
-hotbar[3] = ["picareta-ferro",1]
-hotbar[4] = ["picareta-ouro",1]
-hotbar[5] = ["picareta-diamante",1]
-hotbar[6] = ["picareta-esmeralda",1]
-hotbar[0] = ["picareta-rubi",1]
-hotbar[7] = ["picareta-obamium",1]
+hotbar[1] = ["picareta-pedra", 1]
+hotbar[2] = ["picareta-prata", 1]
+hotbar[3] = ["picareta-ferro", 1]
+hotbar[4] = ["picareta-ouro", 1]
+hotbar[5] = ["picareta-diamante", 1]
+hotbar[6] = ["picareta-esmeralda", 1]
+hotbar[0] = ["picareta-rubi", 1]
+hotbar[7] = ["picareta-obamium", 1]
 
 export var selecionado = 0;
 
@@ -59,32 +59,43 @@ function atualizar(sprit, id, cores, pixel_tipo = "pixel") {
     });
 }
 
+import { configurarClique } from "./inventario.js";
+
 export async function atualizar_hotbar() {
-    document.getElementById("hotbar").innerHTML = ""
+    const elementoHotbar = document.getElementById("hotbar");
+    if (!elementoHotbar) return;
 
-        for (let i = 0; i < 8; i++) {
-            const div = document.createElement("div");
+    elementoHotbar.innerHTML = "";
 
-            div.id = `hotbar-${i}`
-            div.classList.add("pixel-item");
+    for (let i = 0; i < 8; i++) {
+        const div = document.createElement("div");
 
-            document.getElementById("hotbar").appendChild(div);
-            console.log(hotbar[i])
-            if (Array.isArray(hotbar[i])) {
-                atualizar(referencia[hotbar[i][0]].padrao, div.id, referencia[hotbar[i][0]].cores, "pixel-inv")
-                const textoQuantidade = document.createElement("span");
+        div.id = `hotbar-${i}`;
+        div.classList.add("pixel-item");
 
-                textoQuantidade.classList.add("quantidade-item");
-                textoQuantidade.textContent = hotbar[i][1];
-                div.appendChild(textoQuantidade);
-            }
-            if (hotbar[i] === 0) {
-                atualizar(nada.padrao, div.id, { N: "nada" }, "pixel-inv")
-            }
-            if (i == selecionado) {
-                div.classList.add("selecionado");
-            }
+        elementoHotbar.appendChild(div);
+
+        configurarClique(div, "hotbar", i, 0);
+
+        if (Array.isArray(hotbar[i])) {
+            atualizar(
+                referencia[hotbar[i][0]].padrao,
+                div.id,
+                referencia[hotbar[i][0]].cores,
+                "pixel-inv"
+            );
+
+            const textoQuantidade = document.createElement("span");
+            textoQuantidade.classList.add("quantidade-item");
+            textoQuantidade.textContent = hotbar[i][1];
+            div.appendChild(textoQuantidade);
+        } else {
+            atualizar(nada.padrao, div.id, { N: "nada" }, "pixel-inv");
         }
-    
+
+        if (i === selecionado) {
+            div.classList.add("selecionado");
+        }
+    }
 }
 atualizar_hotbar()

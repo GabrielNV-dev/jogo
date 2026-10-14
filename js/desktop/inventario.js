@@ -1,14 +1,17 @@
 import { realizar_receitas } from "./crafts.js";
 import { itens, atualizar } from "../utils.js";
 import { result, table2x2 } from "./table2x2.js";
-import { hotbar } from "./hotbar.js";
-
+import { hotbar,atualizar_hotbar } from "./hotbar.js";
 import { referencia, nada } from "../itens/center.js";
 
 let vizu_inv = 0;
 
 // Variável para guardar o slot que está atualmente selecionado pelo clique
 let itemSelecionado = null; // Exemplo: { area: "inv", i: 0, j: 1 }
+let temporizadorClique = null;
+let cliquePendente = null;
+
+const TEMPO_CLIQUE_DUPLO = 250;
 
 export var inventario = Array.from({ length: 9 }, () =>
     Array.from({ length: 4 }, () => 0)
@@ -40,7 +43,7 @@ function pegar_slot(posicao) {
     if (area === "inv") return inventario[i][j];
     if (area === "craft") return table2x2[i][j];
     if (area === "result") return result;
-
+    if (area === "hotbar") return hotbar[i];
     return 0;
 }
 
@@ -51,6 +54,8 @@ function definir_slot(posicao, item) {
         inventario[i][j] = item;
     } else if (area === "craft") {
         table2x2[i][j] = item;
+    } else if (area === "hotbar") {
+        hotbar[i] = item;
     } else if (area === "result") {
         return false;
     }
@@ -114,43 +119,153 @@ export function mover_entre_areas(origem, destino) {
 }
 
 // Configura o clique em vez de arrastar
-function configurarClique(div, area, i, j) {
-    div.addEventListener("click", () => {
-        const posicaoAtual = { area, i, j };
+
+
+export function configurarClique(div, area, i, j) {
+    const posicaoAtual = { area, i, j };
+
+    function mesmaPosicao(a, b) {
+        return a &&
+            b &&
+            a.area === b.area &&
+            a.i === b.i &&
+            a.j === b.j;
+    }
+
+    function executarClique(cliqueDuplo) {
         const itemNoSlot = pegar_slot(posicaoAtual);
 
-        // Se nenhum item está selecionado, seleciona este (se houver item)
+        // Seleciona um item
         if (!itemSelecionado) {
-            // Se for o resultado e estiver vazio, não faz nada
-            if (area === "result" && !Array.isArray(result)) return;
-            // Se for um slot normal e estiver vazio (0), não faz nada
-            if (area !== "result" && !Array.isArray(itemNoSlot)) return;
+            if (!Array.isArray(itemNoSlot)) return;
 
             itemSelecionado = posicaoAtual;
-            atualizar_inv(); // Atualiza para destacar visualmente se quiser
+            atualizar_inv();
             return;
         }
 
-        // Se já tem um item selecionado, o clique atual funciona como o destino
-        // Caso clique no mesmo lugar, deseleciona
-        if (
-            itemSelecionado.area === area &&
-            itemSelecionado.i === i &&
-            itemSelecionado.j === j
-        ) {
+        // Clicou no próprio item selecionado: cancela
+        if (mesmaPosicao(itemSelecionado, posicaoAtual)) {
             itemSelecionado = null;
             atualizar_inv();
             return;
         }
 
-        // Executa a movimentação entre as áreas
-        mover_entre_areas(itemSelecionado, posicaoAtual);
-        
-        // Limpa a seleção após mover
-        itemSelecionado = null;
+        // Não permite depositar itens no resultado
+        if (area === "result") return;
+
+        // Resultado de craft: mantém o comportamento existente
+        if (itemSelecionado.area === "result") {
+            mover_entre_areas(itemSelecionado, posicaoAtual);
+            itemSelecionado = null;
+            atualizar_inv();
+            return;
+        }
+
+        const itemOrigem = pegar_slot(itemSelecionado);
+
+        if (!Array.isArray(itemOrigem)) {
+            itemSelecionado = null;
+            atualizar_inv();
+            return;
+        }
+
+        const nomeItem = itemOrigem[0];
+        const quantidadeOrigem = itemOrigem[1];
+
+        // Clicar em uma casa ocupada por outro item
+        // troca as pilhas completas
+        if (
+            Array.isArray(itemNoSlot) &&
+            itemNoSlot[0] !== nomeItem
+        ) {
+            definir_slot(itemSelecionado, itemNoSlot);
+            definir_slot(posicaoAtual, itemOrigem);
+
+            itemSelecionado = null;
+            atualizar_inv();
+            return;
+        }
+
+        // Clique simples: 1 item
+        // Clique duplo: pilha inteira
+        const quantidadeTransferir = cliqueDuplo
+            ? quantidadeOrigem
+            : 1;
+
+        // Casa vazia: cria uma pilha
+        if (!Array.isArray(itemNoSlot)) {
+            definir_slot(posicaoAtual, [
+                nomeItem,
+                quantidadeTransferir
+            ]);
+        } else {
+            // Mesmo tipo: junta as quantidades
+            itemNoSlot[1] += quantidadeTransferir;
+        }
+
+        // Retira da origem somente o que foi transferido
+        itemOrigem[1] -= quantidadeTransferir;
+
+        if (itemOrigem[1] <= 0) {
+            definir_slot(itemSelecionado, 0);
+            itemSelecionado = null;
+        }
+
         atualizar_inv();
+    }
+
+    div.addEventListener("click", () => {
+        const cliqueAtual = { area, i, j };
+
+        // Segundo clique na mesma casa dentro do intervalo
+        if (
+            cliquePendente &&
+            mesmaPosicao(cliquePendente.posicao, cliqueAtual) &&
+            Date.now() - cliquePendente.tempo < TEMPO_CLIQUE_DUPLO
+        ) {
+            clearTimeout(temporizadorClique);
+
+            temporizadorClique = null;
+            cliquePendente = null;
+
+            executarClique(true);
+            return;
+        }
+
+        // Se havia outro clique pendente, executa-o primeiro
+        if (temporizadorClique !== null) {
+            clearTimeout(temporizadorClique);
+
+            const cliqueAnterior = cliquePendente;
+            temporizadorClique = null;
+            cliquePendente = null;
+
+            if (cliqueAnterior) {
+                cliqueAnterior.executar(false);
+            }
+        }
+
+        cliquePendente = {
+            posicao: cliqueAtual,
+            tempo: Date.now(),
+            executar: executarClique
+        };
+
+        temporizadorClique = setTimeout(() => {
+            const pendente = cliquePendente;
+
+            temporizadorClique = null;
+            cliquePendente = null;
+
+            if (pendente) {
+                pendente.executar(false);
+            }
+        }, TEMPO_CLIQUE_DUPLO);
     });
 }
+
+
 
 export function receber_item(drop, quantidade) {
     for (let i = 0; i < 9; i++) {
@@ -181,7 +296,7 @@ export function atualizar_inv() {
     const divResult = document.createElement("div");
     divResult.id = `result-00`;
     divResult.classList.add("item-inv");
-    
+
     // Destaca se estiver selecionado
     if (itemSelecionado && itemSelecionado.area === "result") {
         divResult.classList.add("selecionado");
@@ -251,6 +366,7 @@ export function atualizar_inv() {
             }
         }
     }
+    atualizar_hotbar();
 }
 
 document.addEventListener("keydown", (event) => {
