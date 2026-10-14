@@ -174,6 +174,7 @@
   position: relative;
   cursor: grab;
   transition: filter 0.15s, outline 0.15s;
+  z-index: 2;
 }
 
 .item-inv:active {
@@ -373,6 +374,150 @@
 
 .pedra-rocha {
   background-color: rgb(53, 52, 52);
+}
+
+.machado-madeira {
+  background-color: rgb(51, 25, 8);
+}
+
+.machado-pedra {
+  background-color: grey;
+}
+
+.machado-prata {
+  background-color: rgb(197, 197, 197);
+}
+
+.machado-ferro {
+  background-color: white;
+}
+
+.machado-ouro {
+  background-color: yellow;
+}
+
+.machado-diamante {
+  background-color: rgb(3, 104, 255);
+}
+
+.machado-esmeralda {
+  background-color: rgb(1, 194, 1);
+}
+
+.machado-rubi {
+  background-color: rgb(243, 52, 52);
+}
+
+.machado-obamium {
+  background-color: purple;
+}
+
+.machado-cabo {
+  background-color: rgb(97, 61, 4);
+}
+
+.machado-cabo-claro {
+  background-color: rgb(109, 73, 6);
+}
+
+.espada-madeira {
+  background-color: rgb(51, 25, 8);
+}
+
+.espada-pedra {
+  background-color: grey;
+}
+
+.espada-prata {
+  background-color: rgb(197, 197, 197);
+}
+
+.espada-ferro {
+  background-color: white;
+}
+
+.espada-ouro {
+  background-color: yellow;
+}
+
+.espada-diamante {
+  background-color: rgb(3, 104, 255);
+}
+
+.espada-esmeralda {
+  background-color: rgb(1, 194, 1);
+}
+
+.espada-rubi {
+  background-color: rgb(243, 52, 52);
+}
+
+.espada-obamium {
+  background-color: purple;
+}
+
+.espada-cabo {
+  background-color: rgb(97, 61, 4);
+}
+
+.espada-cabo-claro {
+  background-color: rgb(109, 73, 6);
+}
+
+.pa-madeira {
+  background-color: rgb(51, 25, 8);
+}
+
+.pa-pedra {
+  background-color: grey;
+}
+
+.pa-prata {
+  background-color: rgb(197, 197, 197);
+}
+
+.pa-ferro {
+  background-color: white;
+}
+
+.pa-ouro {
+  background-color: yellow;
+}
+
+.pa-diamante {
+  background-color: rgb(3, 104, 255);
+}
+
+.pa-esmeralda {
+  background-color: rgb(1, 194, 1);
+}
+
+.pa-rubi {
+  background-color: rgb(243, 52, 52);
+}
+
+.pa-obamium {
+  background-color: purple;
+}
+
+.pa-cabo {
+  background-color: rgb(97, 61, 4);
+}
+
+.pa-cabo-claro {
+  background-color: rgb(109, 73, 6);
+}
+
+.pao-contorno {
+  background-color: #ac7339;
+}
+
+.pao-interno {
+  background-color: #d9a066;
+}
+
+.pao-interno2 {
+  background-color: #c68e56;
 }
 
 .minerio-preto {

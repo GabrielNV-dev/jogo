@@ -20,10 +20,13 @@
 
 @use './itens/pixel-itens' as *;
 
-@use './itens/madeira_bruta/cores-madeira_bruta' as *;
+@use './itens/madeira/cores-madeira' as *;
 @use './itens/picareta/cores-picareta' as *;
 @use './itens/pedra-m/cores-pedra-m' as *;
-
+@use './itens/machado/cores-machado' as *;
+@use './itens/espada/cores-espada' as *;
+@use './itens/pa/cores-pa' as *;
+@use './itens/pao/cores-pao' as *;
 
 @use './itens/minerios/cores-minerios' as *;
 

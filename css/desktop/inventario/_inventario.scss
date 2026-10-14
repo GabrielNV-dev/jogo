@@ -9,7 +9,9 @@
     position: relative;
     cursor: grab;
     transition: filter 0.15s, outline 0.15s;
+    z-index: 2;
 }
+
 .item-inv:active {
     cursor: grabbing;
 }
