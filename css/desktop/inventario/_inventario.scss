@@ -6,6 +6,21 @@
     grid-template-rows: repeat(10, 2px);
     position: relative;
     gap: 0px;
+    position: relative;
+    cursor: grab;
+    transition: filter 0.15s, outline 0.15s;
+}
+.item-inv:active {
+    cursor: grabbing;
+}
+
+.item-inv[draggable="true"]:hover {
+    filter: brightness(1.25);
+}
+
+.item-inv.drag-destino {
+    outline: 2px solid #7cff7c;
+    outline-offset: -2px;
 }
 
 .pixel-inv {

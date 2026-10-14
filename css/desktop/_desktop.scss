@@ -23,3 +23,9 @@
     gap: 1px;
     padding: 2px;
 }
+#agrupamento{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px
+}

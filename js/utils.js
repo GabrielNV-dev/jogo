@@ -1,6 +1,6 @@
 export const itens = [
     "nada",
-    "madeira",
+    "madeira_bruta",
     "pedra-m",
     "picareta-obamium", 
     "picareta-rubi", 
@@ -35,13 +35,13 @@ export const picaretas_infos = {
 export const machados_infos = {
     "machado-obamium": 45,
     "machado-rubi": 40, 
-     "machado-esmeralda": 35,
+    "machado-esmeralda": 35,
     "machado-diamante": 30, 
-     "machado-ouro": 25 ,
+    "machado-ouro": 25 ,
     "machado-ferro": 20,
     "machado-prata" : 15,
-     "machado-pedra": 10,
-     "machado-madeira": 5
+    "machado-pedra": 10,
+    "machado-madeira": 5
     }
 
 export function atualizar(sprit, id, cores, pixel_tipo = "pixel") {

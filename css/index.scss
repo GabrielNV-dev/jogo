@@ -8,6 +8,7 @@
 @use './desktop/desktop' as *;
 @use './desktop/inventario/inventario' as *;
 @use './desktop/table2x2/table2x2' as *;
+@use './desktop/result/result' as *;
 
 @use './hud/infos/fome' as *;
 @use './hud/infos/vida' as *;
@@ -19,7 +20,7 @@
 
 @use './itens/pixel-itens' as *;
 
-@use './itens/madeira/cores-madeira' as *;
+@use './itens/madeira_bruta/cores-madeira_bruta' as *;
 @use './itens/picareta/cores-picareta' as *;
 @use './itens/pedra-m/cores-pedra-m' as *;
 
