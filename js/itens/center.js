@@ -6,6 +6,9 @@ import { machado } from "./sprs/spr_machado.js"
 import { espada } from "./sprs/spr_espada.js"
 import { pao } from "./sprs/spr_pao.js"
 import { pa } from "./sprs/spr_pa.js"
+import { graveto } from "./sprs/spr_graveto.js"
+import { madeira_refinada } from "./sprs/spr_madeira_refinada.js"
+
 
 function seletor(item) {
     const copia = structuredClone(picareta);
@@ -41,6 +44,9 @@ export const referencia = {
     "madeira_bruta": madeira_bruta,
     "pedra-m": pedra,
     "pao": pao,
+    "graveto": graveto,
+    "madeira_refinada" : madeira_refinada,
+    
     "picareta-madeira": seletor("picareta-madeira"),
     "picareta-pedra": seletor("picareta-pedra"),
     "picareta-prata": seletor("picareta-prata"),

@@ -31,7 +31,6 @@
   position: absolute;
   display: grid;
   grid-template-columns: repeat(10, 3px);
-  border: 1px solid red;
 }
 
 .folhac {
@@ -51,7 +50,6 @@
   position: absolute;
   display: grid;
   grid-template-columns: repeat(10, 3px);
-  border: 1px solid red;
 }
 
 .diamante {
@@ -97,6 +95,22 @@
 .prata {
   background-color: #c0c0c0;
   z-index: 2;
+}
+
+.grama {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(10, 3px);
+}
+
+.grama-verde {
+  background: #17b303;
+  z-index: 1;
+}
+
+.grama-sombra {
+  background: #062901;
+  z-index: 1;
 }
 
 #hotbar {
@@ -292,10 +306,12 @@
 
 .calca {
   background: #333;
+  z-index: 2;
 }
 
 .sapato {
   background: #111;
+  z-index: 2;
 }
 
 .olho {
@@ -307,16 +323,28 @@
   background: #333;
 }
 
-.madeira-marrom-escuro {
-  background-color: rgb(37, 23, 1);
+.madeira-bruta-preto {
+  background-color: black;
 }
 
-.madeira-marrom-claro {
+.madeira-bruta-marrom {
   background-color: rgb(56, 37, 1);
 }
 
-.madeira-sombra {
-  background-color: rgb(13, 9, 3);
+.madeira-refinada-preto {
+  background-color: black;
+}
+
+.madeira-refinada-marrom {
+  background-color: rgb(104, 68, 2);
+}
+
+.graveto-cabo {
+  background-color: rgb(97, 61, 4);
+}
+
+.graveto-cabo-claro {
+  background-color: rgb(109, 73, 6);
 }
 
 .picareta-madeira {

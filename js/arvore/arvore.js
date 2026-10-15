@@ -38,7 +38,11 @@ function criarArvore(sprit, x, y, id) {
     document.body.appendChild(elemento);
 }
 const arvores = [
+    
+    { x: 140, y: 100 },
     { x: 100, y: 100 },
+    { x: 100, y: 60 },
+
     { x: 2500, y: 1800 },
     { x: 700, y: 250 },
     { x: 500, y: 400 },

@@ -134,7 +134,11 @@ export function informar_vida(id, vida) {
 }
 
 const pedras = [
+    
+    { x: 10, y: 100 },
     { x: 50, y: 100 },
+    { x: 50, y: 120 },
+
     { x: 50, y: 200 },
     { x: 50, y: 300 },
     { x: 50, y: 400 },

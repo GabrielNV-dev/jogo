@@ -1,8 +1,8 @@
 @use './cores/cores' as *;
 
 @use './arvore/avore' as *;
-
 @use './pedra/pedra' as *;
+@use './grama/grama' as *;
 
 @use './desktop/hotbar/hotbar' as *;
 @use './desktop/desktop' as *;
@@ -20,7 +20,11 @@
 
 @use './itens/pixel-itens' as *;
 
-@use './itens/madeira/cores-madeira' as *;
+@use './itens/madeira_bruta/cores-madeira_bruta' as *;
+@use './itens/madeira_refinada/cores-madeira_refinada' as *;
+
+@use './itens/graveto/cores-graveto' as *;
+
 @use './itens/picareta/cores-picareta' as *;
 @use './itens/pedra-m/cores-pedra-m' as *;
 @use './itens/machado/cores-machado' as *;
