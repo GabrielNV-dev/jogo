@@ -80,7 +80,7 @@ document.addEventListener("keydown", (event) => {
                 if (distanciaX <= -19.1 && distanciaX >= -40.3 && distanciaY <= -22.3 && distanciaY > -62.8 && event.key == "s") { bloqueado = 40 }
             }
             if (entidade.classList.contains("pedra")) {
-                console.log(distanciaY)
+                
                 if (distanciaY <= -33 && distanciaY >= -33.5 && distanciaX <= -9.50 && distanciaX > -50 && event.key == "d") { bloqueado = 10 }
                 if (distanciaY <= -33 && distanciaY >= -33.5 && distanciaX >= -50 && distanciaX < -10 && event.key == "a") { bloqueado = 20 }
                 if (distanciaX <= -19.1 && distanciaX >= -40 && distanciaY >= -43 && distanciaY < -23 && event.key == "w") { bloqueado = 30 }
