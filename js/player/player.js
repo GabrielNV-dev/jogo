@@ -54,14 +54,12 @@ async function gestor_fome() {
     }, gasto);
 }
 
-
 document.addEventListener("keydown", (event) => {
     if (event.key === "e") { } else {
         let bloqueado = 0
         const player = document.getElementById("boneco")
         var posicao = player.getBoundingClientRect();
         let step = 10
-        event.preventDefault();
 
         const player_left = Math.round(parseFloat(player.style.left) / 10) * 10;
         const player_top = Math.round(parseFloat(player.style.top) / 10) * 10;
@@ -104,11 +102,37 @@ document.addEventListener("keydown", (event) => {
                 }
             }
             if (entidade.classList.contains("pedra")) {
+                if (player_left + 20 >= entidade_left && 
+                    player_top >= entidade_top && 
+                    player_top <= entidade_top + 20 && 
+                    player_left <= entidade_left && 
+                    event.key == "d") { 
+                        bloqueado = 10 
+                    }
 
-                if (distanciaY <= -33 && distanciaY >= -33.5 && distanciaX <= -9.50 && distanciaX > -50 && event.key == "d") { bloqueado = 10 }
-                if (distanciaY <= -33 && distanciaY >= -33.5 && distanciaX >= -50 && distanciaX < -10 && event.key == "a") { bloqueado = 20 }
-                if (distanciaX <= -19.1 && distanciaX >= -40 && distanciaY >= -43 && distanciaY < -23 && event.key == "w") { bloqueado = 30 }
-                if (distanciaX <= -19.1 && distanciaX >= -40 && distanciaY <= -22.3 && distanciaY > -43 && event.key == "s") { bloqueado = 40 }
+                if (player_left >= entidade_left &&
+                    player_left <= entidade_left + 20 &&
+                    player_top >= entidade_top &&
+                    player_top <= entidade_top + 20 &&
+                    event.key == "a") {
+                    bloqueado = 20;
+                }
+
+                if (player_top - 30 <= entidade_top &&
+                    player_left <= entidade_left + 13 &&
+                    player_left >= entidade_left - 13 &&
+                    player_top - 30 >= entidade_top &&
+                    event.key == "w") {
+                    bloqueado = 30;
+                }
+
+                if (player_top + 10 >= entidade_top &&
+                    player_left <= entidade_left + 13 &&
+                    player_left >= entidade_left - 13 &&
+                    player_top <= entidade_top &&
+                    event.key == "s") {
+                    bloqueado = 40;
+                }
             }
         });
 

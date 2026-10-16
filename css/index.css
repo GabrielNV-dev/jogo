@@ -1,11 +1,11 @@
 .branco {
   background-color: white;
-  z-index: 2;
+  z-index: 3;
 }
 
 .preto {
   background-color: black;
-  z-index: 2;
+  z-index: 3;
 }
 
 .cinza-claro {
@@ -106,12 +106,12 @@
 
 .grama-verde {
   background: #17b303;
-  z-index: 1;
+  z-index: 0;
 }
 
 .grama-sombra {
   background: #062901;
-  z-index: 1;
+  z-index: 0;
 }
 
 #hotbar {
@@ -285,6 +285,8 @@
 }
 
 .boneco {
+  left: 1250px;
+  top: 900px;
   display: grid;
   grid-template-columns: repeat(10, 3px);
   position: absolute;

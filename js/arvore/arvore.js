@@ -52,24 +52,41 @@ document.addEventListener("keydown", (event) => {
     const posicao = player.getBoundingClientRect();
     let arvoreProxima = null;
 
+    const player_left = Math.round(parseFloat(player.style.left) / 10) * 10;
+    const player_top = Math.round(parseFloat(player.style.top) / 10) * 10;
+
     document.querySelectorAll(".arvore").forEach(item => {
         const rect = item.getBoundingClientRect();
 
-        const distanciaX = Math.round( (rect.left - posicao.right) / 10) * 10
-        const distanciaY = Math.round( (rect.top - posicao.bottom) / 10) * 10
+        const distanciaX = Math.round((rect.left - posicao.right) / 10) * 10
+        const distanciaY = Math.round((rect.top - posicao.bottom) / 10) * 10
+
+        const entidade_left = Math.round(parseFloat(item.style.left) / 10) * 10;
+        const entidade_top = Math.round(parseFloat(item.style.top) / 10) * 10;
+
+
 
         const perto =
-            distanciaX <= -10 &&
-            distanciaX >= -50 &&
-            distanciaY >= -65.5 &&
-            distanciaY <= -25.5;
+            player_left + 20 >= entidade_left && player_top >= entidade_top && player_top <= entidade_top + 20 && player_left <= entidade_left
+            ||
+            player_left >= entidade_left &&
+            player_left <= entidade_left + 20 &&
+            player_top >= entidade_top &&
+            player_top <= entidade_top + 20
+            ||
+
+            player_top - 30 <= entidade_top &&
+            player_left <= entidade_left + 13 &&
+            player_left >= entidade_left - 13 &&
+            player_top - 30 >= entidade_top
+
+
 
         if (perto) {
             arvoreProxima = item;
         }
     });
 
-    // Só redesenha as árvores quando a árvore próxima muda
     if (arvoreProxima !== arvoreEmInteracao) {
         if (arvoreEmInteracao) {
             atualizar(
@@ -99,6 +116,6 @@ document.addEventListener("keydown", (event) => {
             arvoreProxima.id,
             3
         );
-        if(vida == 0){ arvoreProxima = null}
+        if (vida == 0) { arvoreEmInteracao = null }
     }
 });
