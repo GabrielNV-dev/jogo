@@ -63,24 +63,48 @@ document.addEventListener("keydown", (event) => {
         let step = 10
         event.preventDefault();
 
+        const player_left = Math.round(parseFloat(player.style.left) / 10) * 10;
+        const player_top = Math.round(parseFloat(player.style.top) / 10) * 10;
+
         document.querySelectorAll(".objeto").forEach(entidade => {
 
             const rect2 = entidade.getBoundingClientRect();
+
+            const entidade_left = Math.round(parseFloat(entidade.style.left) / 10) * 10;
+            const entidade_top = Math.round(parseFloat(entidade.style.top) / 10) * 10;
+
             const distanciaX = rect2.left - posicao.right;
             const distanciaY = rect2.top - posicao.bottom;
 
-
-
-
             if (entidade.classList.contains("arvore")) {
-                
-                if (distanciaY <= -33 && distanciaY >= -53.5 && distanciaX <= -9.50 && distanciaX > -50 && event.key == "d") { bloqueado = 10 }
-                if (distanciaY <= -33 && distanciaY >= -53.5 && distanciaX >= -50.4 && distanciaX < -10 && event.key == "a") { bloqueado = 20 }
-                if (distanciaX <= -19.1 && distanciaX >= -40.3 && distanciaY >= -63 && distanciaY < -23 && event.key == "w") { bloqueado = 30 }
-                if (distanciaX <= -19.1 && distanciaX >= -40.3 && distanciaY <= -22.3 && distanciaY > -62.8 && event.key == "s") { bloqueado = 40 }
+                if (player_left + 20 >= entidade_left && player_top >= entidade_top && player_top <= entidade_top + 20 && player_left <= entidade_left && event.key == "d") { bloqueado = 10 }
+
+                if (player_left >= entidade_left &&
+                    player_left <= entidade_left + 20 &&
+                    player_top >= entidade_top &&
+                    player_top <= entidade_top + 20 &&
+                    event.key == "a") {
+                    bloqueado = 20;
+                }
+
+                if (player_top - 30 <= entidade_top &&
+                    player_left <= entidade_left + 13 &&
+                    player_left >= entidade_left - 13 &&
+                    player_top - 30 >= entidade_top &&
+                    event.key == "w") {
+                    bloqueado = 30;
+                }
+
+                if (player_top + 10 >= entidade_top &&
+                    player_left <= entidade_left + 13 &&
+                    player_left >= entidade_left - 13 &&
+                    player_top <= entidade_top &&
+                    event.key == "s") {
+                    bloqueado = 40;
+                }
             }
             if (entidade.classList.contains("pedra")) {
-                
+
                 if (distanciaY <= -33 && distanciaY >= -33.5 && distanciaX <= -9.50 && distanciaX > -50 && event.key == "d") { bloqueado = 10 }
                 if (distanciaY <= -33 && distanciaY >= -33.5 && distanciaX >= -50 && distanciaX < -10 && event.key == "a") { bloqueado = 20 }
                 if (distanciaX <= -19.1 && distanciaX >= -40 && distanciaY >= -43 && distanciaY < -23 && event.key == "w") { bloqueado = 30 }

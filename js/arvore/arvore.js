@@ -1,6 +1,7 @@
 import { arvore } from "./spr_arvore.js";
 import { itens, atualizar } from "../utils.js";
 import { press_E } from "../interacao/press_E.js";
+import { vida } from "../pedra/pedra.js";
 
 const cores = {
     F: "folhac",
@@ -12,7 +13,7 @@ const cores = {
 
 const ferramentas = ["machado-obamium", "machado-rubi", "machado-esmeralda", "machado-diamante", "machado-ouro", "machado-ferro", "machado-prata", "machado-pedra", "machado-madeira"]
 
-function criarArvore(sprit, x, y, id) {
+export function criarArvore(sprit, x, y, id) {
     const elemento = document.createElement("div");
 
     elemento.classList.add("arvore");
@@ -37,43 +38,67 @@ function criarArvore(sprit, x, y, id) {
 
     document.body.appendChild(elemento);
 }
-const arvores = [
-    
-    { x: 140, y: 100 },
-    { x: 100, y: 100 },
-    { x: 100, y: 60 },
-
-    { x: 2500, y: 1800 },
-    { x: 700, y: 250 },
-    { x: 500, y: 400 },
-];
-
-arvores.forEach((posicao, index) => {
-    criarArvore(arvore.padrao, posicao.x, posicao.y, `arvore-${index}`);
-});
+let arvoreEmInteracao = null;
 
 document.addEventListener("keydown", (event) => {
+    const tecla = event.key.toLowerCase();
 
-    const player = document.getElementById("boneco")
-    var posicao = player.getBoundingClientRect();
+    // Ignora teclas que não afetam a interação com árvores
+    if (!["w", "a", "s", "d", "e"].includes(tecla)) return;
 
-    document.querySelectorAll(".arvore").forEach(item2 => {
-        const rect2 = item2.getBoundingClientRect();
+    const player = document.getElementById("boneco");
+    if (!player) return;
 
-        const distanciaX = rect2.left - posicao.right;
-        const distanciaY = rect2.top - posicao.bottom;
-        if (
+    const posicao = player.getBoundingClientRect();
+    let arvoreProxima = null;
+
+    document.querySelectorAll(".arvore").forEach(item => {
+        const rect = item.getBoundingClientRect();
+
+        const distanciaX = Math.round( (rect.left - posicao.right) / 10) * 10
+        const distanciaY = Math.round( (rect.top - posicao.bottom) / 10) * 10
+
+        const perto =
             distanciaX <= -10 &&
             distanciaX >= -50 &&
             distanciaY >= -65.5 &&
-            distanciaY <= -25.5
-        ) {
-            atualizar(arvore.interacao, item2.id, cores)
-            if(event.key == "e"){
-                press_E("arvore", "madeira_bruta", ferramentas, item2.id, 3)
-            }
-        } else {
-            atualizar(arvore.padrao, item2.id, cores)
+            distanciaY <= -25.5;
+
+        if (perto) {
+            arvoreProxima = item;
         }
-    })
+    });
+
+    // Só redesenha as árvores quando a árvore próxima muda
+    if (arvoreProxima !== arvoreEmInteracao) {
+        if (arvoreEmInteracao) {
+            atualizar(
+                arvore.padrao,
+                arvoreEmInteracao.id,
+                cores
+            );
+        }
+
+        if (arvoreProxima) {
+            atualizar(
+                arvore.interacao,
+                arvoreProxima.id,
+                cores
+            );
+        }
+
+        arvoreEmInteracao = arvoreProxima;
+    }
+
+    // Interage apenas com a árvore próxima
+    if (tecla === "e" && arvoreProxima) {
+        press_E(
+            "arvore",
+            "madeira_bruta",
+            ferramentas,
+            arvoreProxima.id,
+            3
+        );
+        if(vida == 0){ arvoreProxima = null}
+    }
 });

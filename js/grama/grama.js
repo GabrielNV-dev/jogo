@@ -11,7 +11,6 @@ export function criarGrama(sprit, x, y, id) {
     const elemento = document.createElement("div");
 
     elemento.classList.add("grama");
-    elemento.classList.add("objeto");
 
     elemento.style.left = `${x}px`;
     elemento.style.top = `${y}px`;

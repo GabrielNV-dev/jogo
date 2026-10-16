@@ -1,3 +1,4 @@
+
 import { } from "../grama/grama.js";
 import { } from "../arvore/arvore.js";
 import { } from "../pedra/pedra.js";
@@ -5,10 +6,13 @@ import { pedra } from "../pedra/spr_pedra.js";
 import { criarGrama } from "../grama/grama.js";
 import { grama } from "../grama/spr_grama.js";
 
+import { criarArvore } from "../arvore/arvore.js";
+import { arvore } from "../arvore/spr_arvore.js";
+
 export function gerarMapa() {
     const qnt_arvore = Math.floor(Math.random() * (150 - 50 + 1)) + 50;
-    const qnt_pedra = Math.floor(Math.random() * (100 - 200 + 1)) + 200;
-    const qnt_grama = Math.floor(Math.random() * (200 - 300 + 1)) + 300;
+    const qnt_pedra = Math.floor(Math.random() * (200 - 100 + 1)) + 200;
+    const qnt_grama = Math.floor(Math.random() * (300 - 200 + 1)) + 300;
     const minerios = {
         "pedra": Math.floor(qnt_pedra * 0.3),
         "prata": Math.floor(qnt_pedra * 0.22),
@@ -35,20 +39,56 @@ export function gerarMapa() {
     const gramasPorLinha = Math.floor(larguraMapa / 25);
 
     for (let i = 0; i < qnt_grama; i++) {
-        const x = Math.floor(Math.random() * (larguraMapa - 25)) + 25;
-        const y = Math.floor(Math.random() * (alturaMapa - 20)) + 20;
+        const x = Math.floor(Math.random() * (larguraMapa - 50)) + 25;
+        const y = Math.floor(Math.random() * (alturaMapa - 40)) + 20;
 
         gramas.push({ x, y });
     }
-
-    console.log(gramas)
     gramas.forEach((posicao, index) => {
         criarGrama(grama.padrao, posicao.x, posicao.y, `grama-${index}`);
     });
-    var arvores = [
-        { x: 140, y: 100 },
-        { x: 100, y: 100 },
-        { x: 100, y: 60 }]
+
+
+    var arvores = [{ x: 532, y: 234 }]
+    const distanciaMinX = 40;
+    const distanciaMinY = 30;
+
+    for (let i = 0; i < qnt_arvore; i++) {
+        let x, y;
+        let posicaoValida = false;
+        let tentativas = 0;
+        const maxTentativas = 1000;
+
+        while (!posicaoValida && tentativas < maxTentativas) {
+            x = Math.floor(Math.random() * (larguraMapa - 80)) + 40;
+            y = Math.floor(Math.random() * (alturaMapa - 30)) + 30;
+
+            posicaoValida = arvores.every(arvoreExistente => {
+                const distanciaX = Math.abs(x - arvoreExistente.x);
+                const distanciaY = Math.abs(y - arvoreExistente.y);
+
+                return distanciaX >= distanciaMinX ||
+                    distanciaY >= distanciaMinY;
+            });
+
+            tentativas++;
+        }
+
+        if (posicaoValida) {
+            //arvores.push({ x, y });
+        } else {
+            console.warn(`Não foi possível posicionar a árvore ${i}.`);
+        }
+    }
+
+    arvores.forEach((posicao, index) => {
+        criarArvore(
+            arvore.padrao,
+            posicao.x,
+            posicao.y,
+            `arvore-${index}`
+        );
+    });
 
     var pedras = [
 
