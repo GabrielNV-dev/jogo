@@ -6,5 +6,4 @@ export var result = 0
 
 export function receber_result(item){
     result = item
-    console.log(result)
 }

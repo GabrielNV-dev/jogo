@@ -2,8 +2,8 @@
 
 .item-inv {
     display: grid;
-    grid-template-columns: repeat(10, 2px);
-    grid-template-rows: repeat(10, 2px);
+    grid-template-columns: repeat(10, 4px);
+    grid-template-rows: repeat(10, 4px);
     position: relative;
     gap: 0px;
     position: relative;
@@ -25,8 +25,8 @@
 }
 
 .pixel-inv {
-    width: 2px;
-    height: 2px;
+    width: 4px;
+    height: 4px;
 }
 
 .quantidade-item {

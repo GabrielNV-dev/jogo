@@ -7,15 +7,6 @@ export function selecionar(indice) {
 }
 
 
-hotbar[1] = ["picareta-pedra", 1]
-hotbar[2] = ["picareta-prata", 1]
-hotbar[3] = ["picareta-ferro", 1]
-hotbar[4] = ["picareta-ouro", 1]
-hotbar[5] = ["picareta-diamante", 1]
-hotbar[6] = ["picareta-esmeralda", 1]
-hotbar[0] = ["craft-table", 1]
-hotbar[7] = ["picareta-obamium", 1]
-
 export var selecionado = 0;
 
 export function mao() {

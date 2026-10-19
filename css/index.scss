@@ -8,6 +8,7 @@
 @use './desktop/desktop' as *;
 @use './desktop/inventario/inventario' as *;
 @use './desktop/table2x2/table2x2' as *;
+@use './desktop/table3x3/table3x3' as *;
 @use './desktop/result/result' as *;
 
 @use './hud/infos/fome' as *;
@@ -35,6 +36,8 @@
 @use './itens/minerios/cores-minerios' as *;
 @use './itens/craft-table/craft-table' as *;
 
+@use './entidade/entidade' as *;
+@use './entidade/porco' as *;
 * {
     margin: 0;
     padding: 0;

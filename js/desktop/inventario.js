@@ -1,8 +1,14 @@
 import { realizar_receitas } from "./crafts.js";
 import { itens, atualizar } from "../utils.js";
-import { result, table2x2 } from "./table2x2.js";
-import { hotbar,atualizar_hotbar } from "./hotbar.js";
+import { result, table2x2,receber_result } from "./table2x2.js";
+import { hotbar, atualizar_hotbar } from "./hotbar.js";
 import { referencia, nada } from "../itens/center.js";
+import {
+    table3x3,
+    result as result3x3,
+    receber_result as receber_result3x3,
+    atualizar_table3x3
+} from "./table3x3.js";
 
 let vizu_inv = 0;
 
@@ -44,6 +50,10 @@ function pegar_slot(posicao) {
     if (area === "craft") return table2x2[i][j];
     if (area === "result") return result;
     if (area === "hotbar") return hotbar[i];
+
+    if (area === "craft3x3") return table3x3[i][j];
+    if (area === "result3x3") return result3x3;
+
     return 0;
 }
 
@@ -56,13 +66,14 @@ function definir_slot(posicao, item) {
         table2x2[i][j] = item;
     } else if (area === "hotbar") {
         hotbar[i] = item;
-    } else if (area === "result") {
+    } else if (area === "craft3x3") {
+        table3x3[i][j] = item;
+    } else if (area === "result" || area === "result3x3") {
         return false;
     }
 
     return true;
 }
-
 export function mover_entre_areas(origem, destino) {
     if (
         origem.area === destino.area &&
@@ -76,39 +87,72 @@ export function mover_entre_areas(origem, destino) {
 
     if (!Array.isArray(itemOrigem)) return;
 
-    // Coletar o resultado da receita
-    if (origem.area === "result") {
-        if (destino.area !== "inv") return;
+    const resultado2x2 = origem.area === "result";
+    const resultado3x3 = origem.area === "result3x3";
 
-        const [nome, quantidade] = [...result];
-        const slotDestino = inventario[destino.i][destino.j];
-
-        if (slotDestino !== 0) {
-            if (
-                !Array.isArray(slotDestino) ||
-                slotDestino[0] !== nome
-            ) {
-                return;
-            }
+    // Retirar um resultado de craft
+    if (resultado2x2 || resultado3x3) {
+        if (
+            destino.area === "result" ||
+            destino.area === "result3x3"
+        ) {
+            return;
         }
 
-        if (Array.isArray(slotDestino)) {
-            slotDestino[1] += quantidade;
+        const [nome, quantidade] = itemOrigem;
+        const itemDestino = pegar_slot(destino);
+
+        // Não substituir outro item nem misturar tipos diferentes
+        if (
+            Array.isArray(itemDestino) &&
+            itemDestino[0] !== nome
+        ) {
+            return;
+        }
+
+        if (itemDestino === 0) {
+            definir_slot(destino, [nome, quantidade]);
         } else {
-            inventario[destino.i][destino.j] = [nome, quantidade];
+            itemDestino[1] += quantidade;
         }
 
-        for (let i = 0; i < 2; i++) {
-            for (let j = 0; j < 2; j++) {
-                table2x2[i][j] = 0;
+        // Consumir os ingredientes da mesa correspondente
+        if (resultado2x2) {
+            for (let i = 0; i < 2; i++) {
+                for (let j = 0; j < 2; j++) {
+                    table2x2[i][j] = 0;
+                }
             }
         }
 
+        if (resultado3x3) {
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    table3x3[i][j] = 0;
+                }
+            }
+        }
+
+        if (resultado2x2) {
+            receber_result(0);
+        }
+
+        if (resultado3x3) {
+            receber_result3x3(0);
+        }
+
+        itemSelecionado = null;
         atualizar_inv();
         return;
     }
 
-    if (destino.area === "result") return;
+    // Não permitir colocar itens nos slots de resultado
+    if (
+        destino.area === "result" ||
+        destino.area === "result3x3"
+    ) {
+        return;
+    }
 
     const itemDestino = pegar_slot(destino);
 
@@ -152,10 +196,16 @@ export function configurarClique(div, area, i, j) {
         }
 
         // Não permite depositar itens no resultado
-        if (area === "result") return;
+        if (
+            area === "result" ||
+            area === "result3x3"
+        ) return;
 
         // Resultado de craft: mantém o comportamento existente
-        if (itemSelecionado.area === "result") {
+        if (
+            itemSelecionado.area === "result" ||
+            itemSelecionado.area === "result3x3"
+        ) {
             mover_entre_areas(itemSelecionado, posicaoAtual);
             itemSelecionado = null;
             atualizar_inv();
@@ -288,6 +338,7 @@ export function receber_item(drop, quantidade) {
 
 export function atualizar_inv() {
     realizar_receitas(table2x2);
+    realizar_receitas(table3x3);
     document.getElementById("inventario").innerHTML = "";
     document.getElementById("table2x2").innerHTML = "";
     document.getElementById("result").innerHTML = "";
@@ -315,7 +366,6 @@ export function atualizar_inv() {
         atualizar(nada.padrao, divResult.id, { N: "nada" }, "pixel-inv");
     }
 
-    // Renderiza a Mesa de Craft (2x2)
     for (let i = 0; i < 2; i++) {
         for (let j = 0; j < 2; j++) {
             const div = document.createElement("div");
@@ -341,7 +391,6 @@ export function atualizar_inv() {
         }
     }
 
-    // Renderiza o Inventário
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 4; j++) {
             const div = document.createElement("div");
@@ -366,6 +415,7 @@ export function atualizar_inv() {
             }
         }
     }
+    atualizar_table3x3(configurarClique);
     atualizar_hotbar();
 }
 

@@ -165,8 +165,8 @@
 .hotbar,
 .inventario {
   display: none;
-  grid-template-columns: repeat(9, 20px);
-  grid-template-rows: repeat(4, 20px);
+  grid-template-columns: repeat(9, 40px);
+  grid-template-rows: repeat(4, 40px);
   border: 3px solid #000;
   background-color: rgba(0, 0, 0, 0.6588235294);
   gap: 1px;
@@ -182,8 +182,8 @@
 
 .item-inv {
   display: grid;
-  grid-template-columns: repeat(10, 2px);
-  grid-template-rows: repeat(10, 2px);
+  grid-template-columns: repeat(10, 4px);
+  grid-template-rows: repeat(10, 4px);
   position: relative;
   gap: 0px;
   position: relative;
@@ -205,8 +205,8 @@
 }
 
 .pixel-inv {
-  width: 2px;
-  height: 2px;
+  width: 4px;
+  height: 4px;
 }
 
 .quantidade-item {
@@ -226,19 +226,49 @@
 #table2x2 {
   display: none;
   position: relative;
-  grid-template-columns: repeat(2, 20px);
-  grid-template-rows: repeat(2, 20px);
+  grid-template-columns: repeat(2, 40px);
+  grid-template-rows: repeat(2, 40px);
   gap: 1px;
   padding: 2px;
   border: 3px solid #000;
   background-color: rgba(0, 0, 0, 0.6588235294);
 }
 
+#table3x3 {
+  display: none;
+  position: fixed;
+  grid-template-columns: repeat(3, 40px);
+  grid-template-rows: repeat(3, 40px);
+  gap: 1px;
+  padding: 2px;
+  border: 3px solid #000;
+  background-color: #000;
+  top: 50%;
+  left: calc(50% - 70px);
+  transform: translate(-100%, -50%);
+  z-index: 999;
+}
+
+#table3x3-result {
+  display: none;
+  position: fixed;
+  grid-template-columns: 40px;
+  grid-template-rows: 40px;
+  gap: 1px;
+  padding: 2px;
+  border: 3px solid #000;
+  background-color: #000;
+  top: 50%;
+  left: calc(50% + 100px);
+  transform: translateY(-50%);
+  z-index: 999;
+}
+
 #result {
   display: none;
   position: relative;
-  grid-template-columns: repeat(1, 20px);
-  grid-template-rows: repeat(1, 20px);
+  grid-template-columns: repeat(1, 40px);
+  grid-template-rows: repeat(1, 40px);
   gap: 1px;
   padding: 2px;
   border: 3px solid #000;
@@ -331,7 +361,7 @@
 }
 
 .nada {
-  background: #333;
+  background: rgba(51, 51, 51, 0.6588235294);
 }
 
 .madeira-bruta-preto {
@@ -604,6 +634,45 @@
 
 .craft_table-craft {
   background-color: rgb(170, 95, 45);
+}
+
+.entidade {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(10, 3px);
+  grid-auto-rows: 3px;
+}
+
+.porco-corpo {
+  background-color: pink;
+}
+
+.porco-pe {
+  background-color: black;
+}
+
+.porco-olho {
+  background-color: black;
+}
+
+.porco-boca {
+  background-color: red;
+}
+
+#porco-corpo {
+  background-color: pink;
+}
+
+#porco-pe {
+  background-color: black;
+}
+
+#porco-olho {
+  background-color: black;
+}
+
+#porco-boca {
+  background-color: red;
 }
 
 * {

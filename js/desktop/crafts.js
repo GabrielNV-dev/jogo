@@ -1,7 +1,206 @@
-
-import { receber_result, table2x2 } from "./table2x2.js";
+import { receber_result } from "./table2x2.js";
+import { receber_result as receber_result3x3 } from "./table3x3.js";
 
 const receitas = [
+    // PICARETA DE MADEIRA
+    {
+        tipo: "formato",
+        pattern: [
+            ["madeira_refinada", "madeira_refinada","madeira_refinada"],
+            [0, "graveto", 0],
+            [0, "graveto", 0]
+        ],
+        resultado: ["picareta-madeira", 1]
+    },
+
+    // PICARETA DE PEDRA
+    {
+        tipo: "formato",
+        pattern: [
+            ["pedra-m", "pedra-m", "pedra-m"],
+            [0, "graveto", 0],
+            [0, "graveto", 0]
+        ],
+        resultado: ["picareta-pedra", 1]
+    },
+
+    // PICARETA DE PRATA
+    {
+        tipo: "formato",
+        pattern: [
+            ["prata", "prata", "prata"],
+            [0, "graveto", 0],
+            [0, "graveto", 0]
+        ],
+        resultado: ["picareta-prata", 1]
+    },
+
+    // PICARETA DE FERRO
+    {
+        tipo: "formato",
+        pattern: [
+            ["ferro", "ferro", "ferro"],
+            [0, "graveto", 0],
+            [0, "graveto", 0]
+        ],
+        resultado: ["picareta-ferro", 1]
+    },
+
+    // PICARETA DE OURO
+    {
+        tipo: "formato",
+        pattern: [
+            ["ouro", "ouro", "ouro"],
+            [0, "graveto", 0],
+            [0, "graveto", 0]
+        ],
+        resultado: ["picareta-ouro", 1]
+    },
+
+    // PICARETA DE DIAMANTE
+    {
+        tipo: "formato",
+        pattern: [
+            ["diamante", "diamante", "diamante"],
+            [0, "graveto", 0],
+            [0, "graveto", 0]
+        ],
+        resultado: ["picareta-diamante", 1]
+    },
+
+    // PICARETA DE ESMERALDA
+    {
+        tipo: "formato",
+        pattern: [
+            ["esmeralda", "esmeralda", "esmeralda"],
+            [0, "graveto", 0],
+            [0, "graveto", 0]
+        ],
+        resultado: ["picareta-esmeralda", 1]
+    },
+
+    // PICARETA DE RUBI
+    {
+        tipo: "formato",
+        pattern: [
+            ["rubi", "rubi", "rubi"],
+            [0, "graveto", 0],
+            [0, "graveto", 0]
+        ],
+        resultado: ["picareta-rubi", 1]
+    },
+
+    // PICARETA DE OBAMIUM
+    {
+        tipo: "formato",
+        pattern: [
+            ["obamium", "obamium", "obamium"],
+            [0, "graveto", 0],
+            [0, "graveto", 0]
+        ],
+        resultado: ["picareta-obamium", 1]
+    },
+
+    // MACHADO DE MADEIRA
+    {
+        tipo: "formato",
+        pattern: [
+            ["madeira_refinada", "madeira_refinada",0],
+            ["madeira_refinada", "graveto",0],
+            [0, "graveto",0]
+        ],
+        resultado: ["machado-madeira", 1]
+    },
+
+    // MACHADO DE PEDRA
+    {
+        tipo: "formato",
+        pattern: [
+            ["pedra-m", "pedra-m",0],
+            ["pedra-m", "graveto",0],
+            [0, "graveto",0]
+        ],
+        resultado: ["machado-pedra", 1]
+    },
+
+    // MACHADO DE PRATA
+    {
+        tipo: "formato",
+        pattern: [
+            ["prata", "prata,0"],
+            ["prata", "graveto",0],
+            [0, "graveto",0]
+        ],
+        resultado: ["machado-prata", 1]
+    },
+
+    // MACHADO DE FERRO
+    {
+        tipo: "formato",
+        pattern: [
+            ["ferro", "ferro",0],
+            ["ferro", "graveto",0],
+            [0, "graveto",0]
+        ],
+        resultado: ["machado-ferro", 1]
+    },
+
+    // MACHADO DE OURO
+    {
+        tipo: "formato",
+        pattern: [
+            ["ouro", "ouro",0],
+            ["ouro", "graveto",0],
+            [0, "graveto",0]
+        ],
+        resultado: ["machado-ouro", 1]
+    },
+
+    // MACHADO DE DIAMANTE
+    {
+        tipo: "formato",
+        pattern: [
+            ["diamante", "diamante",0],
+            ["diamante", "graveto",0],
+            [0, "graveto",0]
+        ],
+        resultado: ["machado-diamante", 1]
+    },
+
+    // MACHADO DE ESMERALDA
+    {
+        tipo: "formato",
+        pattern: [
+            ["esmeralda", "esmeralda",0],
+            ["esmeralda", "graveto",0],
+            [0, "graveto",0]
+        ],
+        resultado: ["machado-esmeralda", 1]
+    },
+
+    // MACHADO DE RUBI
+    {
+        tipo: "formato",
+        pattern: [
+            ["rubi", "rubi",0],
+            ["rubi", "graveto",0],
+            [0, "graveto",0]
+        ],
+        resultado: ["machado-rubi", 1]
+    },
+
+    // MACHADO DE OBAMIUM
+    {
+        tipo: "formato",
+        pattern: [
+            ["obamium", "obamium",0],
+            ["obamium", "graveto",0],
+            [0, "graveto",0]
+        ],
+        resultado: ["machado-obamium", 1]
+    },
+
+    // GRAVETO
     {
         tipo: "formato",
         pattern: [
@@ -10,42 +209,22 @@ const receitas = [
         ],
         resultado: ["graveto", 4]
     },
-
+    // craft-table
     {
         tipo: "formato",
         pattern: [
-            ["carvao"],
-            ["graveto"]
+            ["madeira_refinada","madeira_refinada"],
+            ["madeira_refinada","madeira_refinada"]
         ],
-        resultado: ["tocha", 4]
+        resultado: ["craft-table", 1]
     },
-
-    {
-        tipo: "formato",
-        pattern: [
-            [
-                "madeira_refinada",
-                "madeira_refinada",
-                "madeira_refinada"
-            ],
-            [
-                0,
-                "graveto",
-                0
-            ],
-            [
-                0,
-                "graveto",
-                0
-            ]
-        ],
-        resultado: ["picareta-madeira", 1]
-    },  
+    // MADEIRA BRUTA -> MADEIRA REFINADA
     {
         tipo: "sem-formato",
         ingredientes: ["madeira_bruta"],
         resultado: ["madeira_refinada", 4]
     }
+
 ];
 
 function itemDaCelula(celula) {
@@ -147,6 +326,14 @@ function combinarFormato(grade, pattern, espelhado = false) {
     return false;
 }
 
+function atualizarResultado(grade, item) {
+    if (grade.length === 3) {
+        receber_result3x3(item);
+    } else {
+        receber_result(item);
+    }
+}
+
 function combinarSemFormato(grade, ingredientes) {
     const itensPresentes = [];
 
@@ -160,29 +347,35 @@ function combinarSemFormato(grade, ingredientes) {
         }
     }
 
+    // A receita precisa ter pelo menos uma unidade
+    // de cada ingrediente exigido.
+    if (itensPresentes.length === 0) {
+        return false;
+    }
+
+    // Para receitas de um ingrediente, aceita várias unidades
+    // do mesmo item, inclusive distribuídas em vários slots.
+    if (ingredientes.length === 1) {
+        return itensPresentes.every(item =>
+            ingredienteAceita(ingredientes[0], item)
+        );
+    }
+
     if (itensPresentes.length !== ingredientes.length) {
         return false;
     }
 
-    const listaIngredientes = [...ingredientes].sort(
-        (a, b) =>
-            (Array.isArray(a) ? a.length : 1) -
-            (Array.isArray(b) ? b.length : 1)
-    );
-
     const usados = new Set();
 
     function procurar(indice) {
-        if (indice === listaIngredientes.length) {
+        if (indice === ingredientes.length) {
             return true;
         }
-
-        const ingrediente = listaIngredientes[indice];
 
         for (let i = 0; i < itensPresentes.length; i++) {
             if (usados.has(i)) continue;
 
-            if (!ingredienteAceita(ingrediente, itensPresentes[i])) {
+            if (!ingredienteAceita(ingredientes[indice], itensPresentes[i])) {
                 continue;
             }
 
@@ -200,6 +393,7 @@ function combinarSemFormato(grade, ingredientes) {
 
     return procurar(0);
 }
+
 
 function encontrarReceita(grade = table2x2) {
     for (const receita of receitas) {
@@ -222,20 +416,40 @@ function encontrarReceita(grade = table2x2) {
     return null;
 }
 
+
 export function realizar_receitas(grade = table2x2) {
     const receita = encontrarReceita(grade);
 
     if (!receita) {
-        receber_result(0);
+        atualizarResultado(grade, 0);
         return null;
     }
 
     const saida = [...receita.resultado];
 
-    receber_result(saida);
+    if (receita.tipo === "sem-formato") {
+        const ingrediente = receita.ingredientes[0];
+        let total = 0;
+
+        for (const linha of grade) {
+            for (const celula of linha) {
+                if (itemDaCelula(celula) === ingrediente) {
+                    total += Array.isArray(celula)
+                        ? Number(celula[1])
+                        : 1;
+                }
+            }
+        }
+
+        saida[1] *= total;
+    }
+
+    atualizarResultado(grade, saida);
 
     return saida;
 }
+
+
 
 export function craftar(grade = table2x2) {
     const receita = encontrarReceita(grade);
@@ -245,6 +459,48 @@ export function craftar(grade = table2x2) {
     }
 
     const saida = [...receita.resultado];
+
+    if (receita.tipo === "sem-formato") {
+        const ingrediente = receita.ingredientes[0];
+
+        // Soma todas as unidades disponíveis do ingrediente.
+        let total = 0;
+
+        for (const linha of grade) {
+            for (const celula of linha) {
+                if (itemDaCelula(celula) === ingrediente) {
+                    total += Array.isArray(celula)
+                        ? Number(celula[1])
+                        : 1;
+                }
+            }
+        }
+
+        if (total === 0) {
+            return null;
+        }
+
+        // Cada unidade produz a quantidade definida na receita.
+        saida[1] *= total;
+
+        // Consome todos os ingredientes utilizados.
+        for (let i = 0; i < grade.length; i++) {
+            for (let j = 0; j < grade[i].length; j++) {
+                const celula = grade[i][j];
+
+                if (itemDaCelula(celula) !== ingrediente) {
+                    continue;
+                }
+
+                grade[i][j] = 0;
+            }
+        }
+
+        realizar_receitas(grade);
+        return saida;
+    }
+
+    // Receitas com formato: consome uma unidade de cada slot.
     for (let i = 0; i < grade.length; i++) {
         for (let j = 0; j < grade[i].length; j++) {
             const celula = grade[i][j];
@@ -263,6 +519,7 @@ export function craftar(grade = table2x2) {
             }
         }
     }
+
     realizar_receitas(grade);
     return saida;
 }

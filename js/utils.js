@@ -1,5 +1,6 @@
 export const itens = [
     "nada",
+    "craft-table",
     "madeira_bruta",
     "madeira_refinada",
     "pedra-m",

@@ -1,7 +1,7 @@
 import { boneco } from "./spr_player.js";
 import { itens, atualizar } from "../utils.js";
-import { selecionar, atualizar_hotbar } from "../desktop/hotbar.js";
-
+import { selecionar, atualizar_hotbar, mao } from "../desktop/hotbar.js";
+import { press_F, interacao } from "../interacao/press_F.js"
 const cores = {
     C: "cabelo",
     P: "pele",
@@ -66,7 +66,10 @@ function porque() {
 let sequencia = []
 
 document.addEventListener("keydown", (event) => {
-    if (event.key === "e") { } else {
+    if (event.key === "e") { } 
+    else if (event.key == "f"){ press_F(mao()) }
+    else if (interacao){ }
+    else {
         let bloqueado = 0
         const player = document.getElementById("boneco")
         var posicao = player.getBoundingClientRect();
