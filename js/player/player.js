@@ -8,7 +8,8 @@ const cores = {
     I: "olho",
     R: "roupa",
     K: "calca",
-
+    A: "b-a",
+    S: "b-s"
 };
 
 atualizar(boneco.frente[1], "boneco", cores)
@@ -53,6 +54,16 @@ async function gestor_fome() {
         contador--
     }, gasto);
 }
+
+function porque() {
+    atualizar(boneco.p, "boneco", cores)
+    document.body.style.background = "rgb(73, 6, 6)"
+    let m = document.createElement("img");
+    m.src = "https://miro.medium.com/v2/resize:fit:720/format:webp/1*koUr4odA91ARVyQzpIQwjg.jpeg";
+
+    document.body.appendChild(m);
+}
+let sequencia = []
 
 document.addEventListener("keydown", (event) => {
     if (event.key === "e") { } else {
@@ -102,13 +113,13 @@ document.addEventListener("keydown", (event) => {
                 }
             }
             if (entidade.classList.contains("pedra")) {
-                if (player_left + 20 >= entidade_left && 
-                    player_top >= entidade_top && 
-                    player_top <= entidade_top + 20 && 
-                    player_left <= entidade_left && 
-                    event.key == "d") { 
-                        bloqueado = 10 
-                    }
+                if (player_left + 20 >= entidade_left &&
+                    player_top >= entidade_top &&
+                    player_top <= entidade_top + 20 &&
+                    player_left <= entidade_left &&
+                    event.key == "d") {
+                    bloqueado = 10
+                }
 
                 if (player_left >= entidade_left &&
                     player_left <= entidade_left + 20 &&
@@ -202,5 +213,9 @@ document.addEventListener("keydown", (event) => {
                 atualizar(boneco.direita, "boneco", cores)
             }
         }
+
+        sequencia.push(event.key)
+        if (!['k', 'i', 'l'].includes(event.key) || sequencia.length > 4) { sequencia = [] }
+        if (sequencia.join('') === 'kill') { porque() } else { document.body.style.backgroundColor = "rgba(9, 68, 1, 0.87)" }
     }
 });

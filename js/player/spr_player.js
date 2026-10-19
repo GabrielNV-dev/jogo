@@ -64,4 +64,19 @@ export const boneco = {
 "   RRR    ",
 "   KKK    ",
 "   KKKK   ",
-]};
+],
+"p":[
+"   CCCC   ",
+"  CCCCCC  ",
+"  PPPPPP  ",
+"  PIPPIP  ",
+"  PAPPAP  ",
+"    PP    ",
+"  PRSSRP  ",
+"  PRSRRP  ",
+"  SRRRSS  ",
+"  SK  KS  ",
+"  KK  KK  ",
+]
+
+};

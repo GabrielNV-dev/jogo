@@ -8,6 +8,7 @@ import { pao } from "./sprs/spr_pao.js"
 import { pa } from "./sprs/spr_pa.js"
 import { graveto } from "./sprs/spr_graveto.js"
 import { madeira_refinada } from "./sprs/spr_madeira_refinada.js"
+import { craft_table } from "./sprs/spr_craft-table.js"
 
 
 function seletor(item) {
@@ -41,6 +42,7 @@ function seletor_pa(item) {
 }
 
 export const referencia = {
+    "craft-table": craft_table,
     "madeira_bruta": madeira_bruta,
     "pedra-m": pedra,
     "pao": pao,
