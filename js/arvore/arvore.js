@@ -107,7 +107,6 @@ document.addEventListener("keydown", (event) => {
         arvoreEmInteracao = arvoreProxima;
     }
 
-    // Interage apenas com a árvore próxima
     if (tecla === "e" && arvoreProxima) {
         press_E(
             "arvore",
@@ -116,6 +115,14 @@ document.addEventListener("keydown", (event) => {
             arvoreProxima.id,
             3
         );
-        if (vida == 0) { arvoreEmInteracao = null }
+        if (
+            arvoreEmInteracao &&
+            !document.getElementById(arvoreEmInteracao.id)
+        ) {
+            arvoreEmInteracao = null;
+        }
+        if (vida == 0) {
+            arvoreEmInteracao = null;
+        }
     }
 });
