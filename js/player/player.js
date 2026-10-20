@@ -149,7 +149,44 @@ document.addEventListener("keydown", (event) => {
                 }
             }
         });
+        document.querySelectorAll(".entidade").forEach(entidade => {
 
+            const rect2 = entidade.getBoundingClientRect();
+
+            const entidade_left = Math.round(parseFloat(entidade.style.left) / 10) * 10;
+            const entidade_top = Math.round(parseFloat(entidade.style.top) / 10) * 10;
+
+            const distanciaX = rect2.left - posicao.right;
+            const distanciaY = rect2.top - posicao.bottom;
+
+            if (entidade.classList.contains("porco")) {
+                if (player_left + 20 >= entidade_left && player_top >= entidade_top && player_top <= entidade_top + 20 && player_left <= entidade_left && event.key == "d") { bloqueado = 10 }
+
+                if (player_left >= entidade_left &&
+                    player_left <= entidade_left + 20 &&
+                    player_top >= entidade_top &&
+                    player_top <= entidade_top + 20 &&
+                    event.key == "a") {
+                    bloqueado = 20;
+                }
+
+                if (player_top - 30 <= entidade_top &&
+                    player_left <= entidade_left + 13 &&
+                    player_left >= entidade_left - 13 &&
+                    player_top - 30 >= entidade_top &&
+                    event.key == "w") {
+                    bloqueado = 30;
+                }
+
+                if (player_top + 10 >= entidade_top &&
+                    player_left <= entidade_left + 13 &&
+                    player_left >= entidade_left - 13 &&
+                    player_top <= entidade_top &&
+                    event.key == "s") {
+                    bloqueado = 40;
+                }
+            }
+        });
         if (event.key >= 1 && event.key <= 8) {
 
             selecionar(event.key - 1)

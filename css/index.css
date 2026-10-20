@@ -639,40 +639,38 @@
 .entidade {
   position: absolute;
   display: grid;
-  grid-template-columns: repeat(10, 3px);
+  grid-template-columns: repeat(16, 3px);
   grid-auto-rows: 3px;
 }
 
 .porco-corpo {
-  background-color: pink;
+  background-color: #FFAEC9;
+  z-index: 5;
 }
 
-.porco-pe {
-  background-color: black;
+.porco-sombra {
+  background-color: #A67183;
+  z-index: 5;
+}
+
+.porco-sombra-clara {
+  background-color: #C9899F;
+  z-index: 5;
 }
 
 .porco-olho {
   background-color: black;
+  z-index: 5;
 }
 
-.porco-boca {
-  background-color: red;
+.porco-sombra-preta {
+  background-color: #6B4954;
+  z-index: 5;
 }
 
-#porco-corpo {
-  background-color: pink;
-}
-
-#porco-pe {
-  background-color: black;
-}
-
-#porco-olho {
-  background-color: black;
-}
-
-#porco-boca {
-  background-color: red;
+.porco-sombra-cima {
+  background-color: #df94ad;
+  z-index: 5;
 }
 
 * {

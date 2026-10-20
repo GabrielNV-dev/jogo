@@ -12,6 +12,9 @@ export var selecionado = 0;
 export function mao() {
     return hotbar[selecionado][0]
 }
+
+hotbar[0] = ["picareta-obamium", 1]
+hotbar[1] = ["machado-obamium", 1]
 function atualizar(sprit, id, cores, pixel_tipo = "pixel") {
     const elemento = document.getElementById(id);
 
