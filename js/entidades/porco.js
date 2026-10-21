@@ -1,7 +1,8 @@
 
 import { atualizar } from "../utils.js";
 import { porco } from "./sprs/spr_porco.js";
-
+import { press_E } from "../interacao/press_E.js";
+import { vida } from "../pedra/pedra.js";
 const cores = {
     P: "porco-corpo",
     R: "porco-sombra",
@@ -43,10 +44,12 @@ const porcos = [{ x: 1250, y: 900 }, { x: 1250, y: 900 }]
 
 
 
-
 function inteligenciaPorco(alvo) {
+    let timerPorco;
+    const porcoElemento = document.getElementById(alvo);
+
     const velocidade = 5;
-    const intervalo = 100;
+    const intervalo = 200;
 
     let direcao = Math.floor(Math.random() * 4) + 1;
     let passosRestantes = Math.floor(Math.random() * 16) + 5;
@@ -63,8 +66,37 @@ function inteligenciaPorco(alvo) {
         passosRestantes = Math.floor(Math.random() * 16) + 5;
     }
 
-    setInterval(() => {
-        const porcoElemento = document.getElementById(alvo);
+    document.addEventListener("keydown", event => {
+        if (event.key.toLowerCase() !== "e") return;
+
+        const player = document.getElementById("boneco");
+        if (!player) return;
+
+        const x = parseFloat(porcoElemento.style.left);
+        const y = parseFloat(porcoElemento.style.top);
+        const ex = parseFloat(player.style.left);
+        const ey = parseFloat(player.style.top);
+
+        if ([x, y, ex, ey].some(Number.isNaN)) return;
+
+        const perto =
+            Math.abs(x - ex) < 20 &&
+            Math.abs(y - ey) < 20;
+
+        if (perto) {
+
+            press_E(
+                "porco",
+                "carne-crua",
+                ["nada"],
+                alvo,
+                3
+            );
+        }
+    });
+
+
+    timerPorco = setInterval(() => {
         if (!porcoElemento) return;
 
         // O porco fica parado durante a pausa.
@@ -90,7 +122,7 @@ function inteligenciaPorco(alvo) {
             case 1: novoX -= velocidade; break; // esquerda
             case 2: novoX += velocidade; break; // direita
             case 3: novoY -= velocidade; break; // cima
-            case 4: novoY += velocidade; break; // baixo
+            case 4: novoY += velocidade; break;
         }
 
         let bloqueado = false;
@@ -106,24 +138,18 @@ function inteligenciaPorco(alvo) {
 
             if (Number.isNaN(ex) || Number.isNaN(ey)) return;
 
-            const largura = entidade.offsetWidth || 20;
-            const altura = entidade.offsetHeight || 20;
+            const largura = 10;
+            const altura = 10;
 
             const colidiu =
-                novoX < ex + largura &&
-                novoX + 20 > ex &&
-                novoY < ey + altura &&
-                novoY + 20 > ey;
+                novoX < ex - 5 + largura &&
+                novoX + 10 > ex &&
+                novoY < ey - 5 + altura &&
+                novoY + 10 > ey;
 
             if (colidiu) bloqueado = true;
         });
 
-        if (bloqueado) {
-            // Ao encontrar um obstáculo, tenta outra direção
-            escolherDirecao();
-            pausa = 2;
-            return;
-        }
 
         porcoElemento.style.left = `${novoX}px`;
         porcoElemento.style.top = `${novoY}px`;
