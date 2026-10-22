@@ -25,6 +25,17 @@ export const itens = [
     "prata",
     "vermelho-efeito",
 ]
+export const espada_infos = {
+    "espada-obamium": 45,
+    "espada-rubi": 40,
+    "espada-esmeralda": 35,
+    "espada-diamante": 30,
+    "espada-ouro": 25,
+    "espada-ferro": 20,
+    "espada-prata": 15,
+    "espada-pedra": 10,
+    "espada-madeira": 5
+}
 export const picaretas_infos = {
     "picareta-obamium": 45,
     "picareta-rubi": 40,

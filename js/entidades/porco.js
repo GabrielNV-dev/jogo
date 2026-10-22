@@ -2,7 +2,7 @@
 import { atualizar } from "../utils.js";
 import { porco } from "./sprs/spr_porco.js";
 import { press_E } from "../interacao/press_E.js";
-import { vida } from "../pedra/pedra.js";
+
 const cores = {
     P: "porco-corpo",
     R: "porco-sombra",
@@ -16,6 +16,7 @@ export function criarPorco(sprit, x, y, id) {
     const elemento = document.createElement("div");
 
     elemento.classList.add("porco", "entidade");
+    elemento.dataset.id = 100
     elemento.style.position = "absolute";
     elemento.style.left = `${x}px`;
     elemento.style.top = `${y}px`;
@@ -54,7 +55,6 @@ function inteligenciaPorco(alvo) {
     let direcao = Math.floor(Math.random() * 4) + 1;
     let passosRestantes = Math.floor(Math.random() * 16) + 5;
     let pausa = 0;
-
     function escolherDirecao() {
         if (Math.random() < 0.4) {
             direcao = Math.floor(Math.random() * 4) + 1;
@@ -67,10 +67,9 @@ function inteligenciaPorco(alvo) {
     }
 
     document.addEventListener("keydown", event => {
-        if (event.key.toLowerCase() !== "e") return;
+
 
         const player = document.getElementById("boneco");
-        if (!player) return;
 
         const x = parseFloat(porcoElemento.style.left);
         const y = parseFloat(porcoElemento.style.top);
@@ -84,20 +83,32 @@ function inteligenciaPorco(alvo) {
             Math.abs(y - ey) < 20;
 
         if (perto) {
+            if (event.key.toLowerCase() == "e") {
 
-            press_E(
-                "porco",
-                "carne-crua",
-                ["nada"],
-                alvo,
-                3
-            );
+                press_E(
+                    "porco",
+                    "carne-crua",
+                    ["nada"],
+                    alvo,
+                    3,
+                );
+            }
+            if (!document.getElementById(alvo) || Number(document.getElementById(alvo).dataset.id) <= 0) { clearInterval(timerPorco); return }
         }
     });
 
 
     timerPorco = setInterval(() => {
-        if (!porcoElemento) return;
+        if (!porcoElemento.isConnected) {
+            clearInterval(timerPorco);
+            return;
+        }
+
+        if (Number(porcoElemento.dataset.id) <= 0) {
+            clearInterval(timerPorco);
+            porcoElemento.remove();
+            return;
+        }
 
         // O porco fica parado durante a pausa.
         if (pausa > 0) {

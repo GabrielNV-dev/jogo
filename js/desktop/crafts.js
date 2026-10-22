@@ -2,6 +2,8 @@ import { receber_result } from "./table2x2.js";
 import { receber_result as receber_result3x3 } from "./table3x3.js";
 
 const receitas = [
+    
+
     // PICARETA DE MADEIRA
     {
         tipo: "formato",
