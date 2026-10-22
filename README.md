@@ -175,20 +175,6 @@ coletados. Entre as categorias implementadas estão:
 Consulte `js/desktop/crafts.js` para ver as receitas definidas
 atualmente. As receitas podem ser ajustadas durante o desenvolvimento.
 
-## 🔧 Desenvolvimento
-
-Para contribuir ou continuar o desenvolvimento:
-
-1.  Mantenha os módulos JavaScript separados por responsabilidade.
-2.  Ao criar um novo item, confira os sprites em `js/itens/sprs/`, as
-    referências em `js/itens/center.js` e os estilos correspondentes em
-    `css/itens/`.
-3.  Ao adicionar uma receita, atualize `js/desktop/crafts.js`.
-4.  Ao adicionar recursos ao mapa, integre sua criação em
-    `js/coordenadas/posicoes.js`.
-5.  Teste o jogo em um servidor local e verifique o console do navegador
-    para identificar erros.
-
 ## 📌 Observações
 
 -   Este projeto é uma experiência independente inspirada em mecânicas
