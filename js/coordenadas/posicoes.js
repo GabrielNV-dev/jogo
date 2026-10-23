@@ -4,6 +4,10 @@ import { grama } from "../grama/spr_grama.js";
 import { criarPedra } from "../pedra/pedra.js";
 import { criarArvore } from "../arvore/arvore.js";
 import { arvore } from "../arvore/spr_arvore.js";
+import { criarPorco, inteligenciaPorco } from "../entidades/porco.js";
+import { porco } from "../entidades/sprs/spr_porco.js";
+
+
 
 const centroX = 1250;
 const centroY = 900;
@@ -13,6 +17,7 @@ export function gerarMapa() {
     const larguraMapa = 2500;
     const alturaMapa = 1800;
 
+    const qnt_porcos = Math.floor(Math.random() * 20) +10;
     const qnt_arvore = Math.floor(Math.random() * 101) + 50;
     const qnt_pedra = 120;
     const qnt_grama = Math.floor(Math.random() * 101) + 200;
@@ -32,9 +37,9 @@ export function gerarMapa() {
     const distancias = {
         arvore: 70,
         pedra: 45,
-        grama: 30
+        grama: 30,
+        porco: 10
     };
-
     // Registra todos os elementos já posicionados
     const elementos = [];
 
@@ -165,9 +170,27 @@ export function gerarMapa() {
         );
     });
 
+    // 4. Gerar porcos
+    const porcos = gerarPosicoes(
+        "porco",
+        qnt_porcos,
+        50,
+        50
+    );
+
+    porcos.forEach((posicao, index) => {
+        criarPorco(
+            porco.frente,
+            posicao.x,
+            posicao.y,
+            `porco-${index}`
+        );
+
+        inteligenciaPorco(`porco-${index}`);
+    });
     console.log(
         `Mapa gerado: ${arvores.length} árvores, ` +
-        `${pedras.length} pedras/minérios e ${gramas.length} gramas.`
+        `${pedras.length} pedras/minérios e ${gramas.length} gramas e ${porcos.length} porquitos`
     );
 }
 

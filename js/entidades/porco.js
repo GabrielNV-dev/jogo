@@ -41,11 +41,7 @@ export function criarPorco(sprit, x, y, id) {
     return elemento;
 }
 
-const porcos = [{ x: 1250, y: 900 }, { x: 1250, y: 900 }]
-
-
-
-function inteligenciaPorco(alvo) {
+export function inteligenciaPorco(alvo) {
     let timerPorco;
     const porcoElemento = document.getElementById(alvo);
 
@@ -56,6 +52,7 @@ function inteligenciaPorco(alvo) {
     let passosRestantes = Math.floor(Math.random() * 16) + 5;
     let pausa = 0;
     function escolherDirecao() {
+
         if (Math.random() < 0.4) {
             direcao = Math.floor(Math.random() * 4) + 1;
         } else {
@@ -87,8 +84,18 @@ function inteligenciaPorco(alvo) {
 
                 press_E(
                     "porco",
-                    "carne-crua",
-                    ["nada"],
+                    "carne-porco",
+                    [
+                        "espada-madeira",
+                        "espada-pedra",
+                        "espada-prata",
+                        "espada-ferro",
+                        "espada-ouro",
+                        "espada-diamante",
+                        "espada-esmeralda",
+                        "espada-rubi",
+                        "espada-obamium"
+                    ],
                     alvo,
                     3,
                 );
@@ -99,6 +106,7 @@ function inteligenciaPorco(alvo) {
 
 
     timerPorco = setInterval(() => {
+
         if (!porcoElemento.isConnected) {
             clearInterval(timerPorco);
             return;
@@ -126,16 +134,31 @@ function inteligenciaPorco(alvo) {
         const x = parseFloat(porcoElemento.style.left);
         const y = parseFloat(porcoElemento.style.top);
 
+
         let novoX = x;
         let novoY = y;
-
+       
         switch (direcao) {
             case 1: novoX -= velocidade; break; // esquerda
             case 2: novoX += velocidade; break; // direita
             case 3: novoY -= velocidade; break; // cima
             case 4: novoY += velocidade; break;
         }
+        if (novoX < 0) {
+            novoX = 0;
+            direcao = 2; // direita
+        } else if (novoX + 20 > 2500) {
+            novoX = 2480;
+            direcao = 1; // esquerda
+        }
 
+        if (novoY < 0) {
+            novoY = 0;
+            direcao = 4; // baixo
+        } else if (novoY + 20 > 1800) {
+            novoY = 1780;
+            direcao = 3; // cima
+        }
         let bloqueado = false;
 
         document.querySelectorAll(".objeto").forEach(entidade => {
@@ -178,13 +201,6 @@ function inteligenciaPorco(alvo) {
         passosRestantes--;
     }, intervalo);
 }
-
-
-
-porcos.forEach((posicao, index) => {
-    criarPorco(porco.frente, posicao.x, posicao.y, `porco-${index}`);
-    inteligenciaPorco(`porco-${index}`)
-});
 
 
 

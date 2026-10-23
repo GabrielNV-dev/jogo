@@ -2,13 +2,110 @@ import { receber_result } from "./table2x2.js";
 import { receber_result as receber_result3x3 } from "./table3x3.js";
 
 const receitas = [
-    
+    // ESPADA DE MADEIRA
+    {
+        tipo: "formato",
+        pattern: [
+            [0, "madeira_refinada", 0],
+            [0, "madeira_refinada", 0],
+            [0, "graveto", 0]
+        ],
+        resultado: ["espada-madeira", 1]
+    },
+
+    // ESPADA DE PEDRA
+    {
+        tipo: "formato",
+        pattern: [
+            [0, "pedra-m", 0],
+            [0, "pedra-m", 0],
+            [0, "graveto", 0]
+        ],
+        resultado: ["espada-pedra", 1]
+    },
+
+    // ESPADA DE PRATA
+    {
+        tipo: "formato",
+        pattern: [
+            [0, "prata", 0],
+            [0, "prata", 0],
+            [0, "graveto", 0]
+        ],
+        resultado: ["espada-prata", 1]
+    },
+
+    // ESPADA DE FERRO
+    {
+        tipo: "formato",
+        pattern: [
+            [0, "ferro", 0],
+            [0, "ferro", 0],
+            [0, "graveto", 0]
+        ],
+        resultado: ["espada-ferro", 1]
+    },
+
+    // ESPADA DE OURO
+    {
+        tipo: "formato",
+        pattern: [
+            [0, "ouro", 0],
+            [0, "ouro", 0],
+            [0, "graveto", 0]
+        ],
+        resultado: ["espada-ouro", 1]
+    },
+
+    // ESPADA DE DIAMANTE
+    {
+        tipo: "formato",
+        pattern: [
+            [0, "diamante", 0],
+            [0, "diamante", 0],
+            [0, "graveto", 0]
+        ],
+        resultado: ["espada-diamante", 1]
+    },
+
+    // ESPADA DE ESMERALDA
+    {
+        tipo: "formato",
+        pattern: [
+            [0, "esmeralda", 0],
+            [0, "esmeralda", 0],
+            [0, "graveto", 0]
+        ],
+        resultado: ["espada-esmeralda", 1]
+    },
+
+    // ESPADA DE RUBI
+    {
+        tipo: "formato",
+        pattern: [
+            [0, "rubi", 0],
+            [0, "rubi", 0],
+            [0, "graveto", 0]
+        ],
+        resultado: ["espada-rubi", 1]
+    },
+
+    // ESPADA DE OBAMIUM
+    {
+        tipo: "formato",
+        pattern: [
+            [0, "obamium", 0],
+            [0, "obamium", 0],
+            [0, "graveto", 0]
+        ],
+        resultado: ["espada-obamium", 1]
+    },
 
     // PICARETA DE MADEIRA
     {
         tipo: "formato",
         pattern: [
-            ["madeira_refinada", "madeira_refinada","madeira_refinada"],
+            ["madeira_refinada", "madeira_refinada", "madeira_refinada"],
             [0, "graveto", 0],
             [0, "graveto", 0]
         ],
@@ -107,9 +204,9 @@ const receitas = [
     {
         tipo: "formato",
         pattern: [
-            ["madeira_refinada", "madeira_refinada",0],
-            ["madeira_refinada", "graveto",0],
-            [0, "graveto",0]
+            ["madeira_refinada", "madeira_refinada", 0],
+            ["madeira_refinada", "graveto", 0],
+            [0, "graveto", 0]
         ],
         resultado: ["machado-madeira", 1]
     },
@@ -118,9 +215,9 @@ const receitas = [
     {
         tipo: "formato",
         pattern: [
-            ["pedra-m", "pedra-m",0],
-            ["pedra-m", "graveto",0],
-            [0, "graveto",0]
+            ["pedra-m", "pedra-m", 0],
+            ["pedra-m", "graveto", 0],
+            [0, "graveto", 0]
         ],
         resultado: ["machado-pedra", 1]
     },
@@ -130,8 +227,8 @@ const receitas = [
         tipo: "formato",
         pattern: [
             ["prata", "prata,0"],
-            ["prata", "graveto",0],
-            [0, "graveto",0]
+            ["prata", "graveto", 0],
+            [0, "graveto", 0]
         ],
         resultado: ["machado-prata", 1]
     },
@@ -140,9 +237,9 @@ const receitas = [
     {
         tipo: "formato",
         pattern: [
-            ["ferro", "ferro",0],
-            ["ferro", "graveto",0],
-            [0, "graveto",0]
+            ["ferro", "ferro", 0],
+            ["ferro", "graveto", 0],
+            [0, "graveto", 0]
         ],
         resultado: ["machado-ferro", 1]
     },
@@ -151,9 +248,9 @@ const receitas = [
     {
         tipo: "formato",
         pattern: [
-            ["ouro", "ouro",0],
-            ["ouro", "graveto",0],
-            [0, "graveto",0]
+            ["ouro", "ouro", 0],
+            ["ouro", "graveto", 0],
+            [0, "graveto", 0]
         ],
         resultado: ["machado-ouro", 1]
     },
@@ -162,9 +259,9 @@ const receitas = [
     {
         tipo: "formato",
         pattern: [
-            ["diamante", "diamante",0],
-            ["diamante", "graveto",0],
-            [0, "graveto",0]
+            ["diamante", "diamante", 0],
+            ["diamante", "graveto", 0],
+            [0, "graveto", 0]
         ],
         resultado: ["machado-diamante", 1]
     },
@@ -173,9 +270,9 @@ const receitas = [
     {
         tipo: "formato",
         pattern: [
-            ["esmeralda", "esmeralda",0],
-            ["esmeralda", "graveto",0],
-            [0, "graveto",0]
+            ["esmeralda", "esmeralda", 0],
+            ["esmeralda", "graveto", 0],
+            [0, "graveto", 0]
         ],
         resultado: ["machado-esmeralda", 1]
     },
@@ -184,9 +281,9 @@ const receitas = [
     {
         tipo: "formato",
         pattern: [
-            ["rubi", "rubi",0],
-            ["rubi", "graveto",0],
-            [0, "graveto",0]
+            ["rubi", "rubi", 0],
+            ["rubi", "graveto", 0],
+            [0, "graveto", 0]
         ],
         resultado: ["machado-rubi", 1]
     },
@@ -195,9 +292,9 @@ const receitas = [
     {
         tipo: "formato",
         pattern: [
-            ["obamium", "obamium",0],
-            ["obamium", "graveto",0],
-            [0, "graveto",0]
+            ["obamium", "obamium", 0],
+            ["obamium", "graveto", 0],
+            [0, "graveto", 0]
         ],
         resultado: ["machado-obamium", 1]
     },
@@ -215,8 +312,8 @@ const receitas = [
     {
         tipo: "formato",
         pattern: [
-            ["madeira_refinada","madeira_refinada"],
-            ["madeira_refinada","madeira_refinada"]
+            ["madeira_refinada", "madeira_refinada"],
+            ["madeira_refinada", "madeira_refinada"]
         ],
         resultado: ["craft-table", 1]
     },

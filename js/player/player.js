@@ -27,7 +27,7 @@ let vida = {
     }
 };
 vida.valor = _vida;
-let _fome = 5;
+let _fome = 10;
 let fome = {
     get valor() {
         return _fome;
@@ -40,8 +40,13 @@ let fome = {
 };
 fome.valor = _fome;
 
-
-let contador = 5
+function alimentar(nivel){
+    fome.valor += nivel
+}
+export function consultar_fome(){
+    return fome.valor
+}
+let contador = 10
 let gasto = 1000
 async function gestor_fome() {
     setInterval(() => {
@@ -55,6 +60,7 @@ async function gestor_fome() {
     }, gasto);
 }
 
+gestor_fome()
 function porque() {
     atualizar(boneco.p, "boneco", cores)
     document.body.style.background = "rgb(73, 6, 6)"

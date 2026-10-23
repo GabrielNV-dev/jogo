@@ -9,6 +9,7 @@ import { pa } from "./sprs/spr_pa.js"
 import { graveto } from "./sprs/spr_graveto.js"
 import { madeira_refinada } from "./sprs/spr_madeira_refinada.js"
 import { craft_table } from "./sprs/spr_craft-table.js"
+import { carne_porco_crua } from "./sprs/spr_carne_porco-crua.js"
 
 
 function seletor(item) {
@@ -42,6 +43,7 @@ function seletor_pa(item) {
 }
 
 export const referencia = {
+    "carne-porco-crua": carne_porco_crua,
     "craft-table": craft_table,
     "madeira_bruta": madeira_bruta,
     "pedra-m": pedra,
