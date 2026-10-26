@@ -40,10 +40,10 @@ let fome = {
 };
 fome.valor = _fome;
 
-function alimentar(nivel){
+export function alimentar(nivel) {
     fome.valor += nivel
 }
-export function consultar_fome(){
+export function consultar_fome() {
     return fome.valor
 }
 let contador = 10
@@ -54,13 +54,24 @@ async function gestor_fome() {
         if (contador == 0) {
             if (fome.valor == 0) { vida.valor -= 1 }
             else { fome.valor -= 1; }
-            contador = 5
+            contador = 10
         }
         contador--
     }, gasto);
 }
-
 gestor_fome()
+
+setInterval(() => {
+
+    if (vida.valor == 0) {
+        document.getElementById("boneco")?.remove();
+        document.getElementById("morte").style.display = "flex"
+    }
+}, 1000);
+document.getElementById("recomecar").addEventListener("click", () => {
+    location.reload();
+});
+
 function porque() {
     atualizar(boneco.p, "boneco", cores)
     document.body.style.background = "rgb(73, 6, 6)"
@@ -72,9 +83,9 @@ function porque() {
 let sequencia = []
 
 document.addEventListener("keydown", (event) => {
-    if (event.key === "e") { } 
-    else if (event.key == "f"){ press_F(mao()) }
-    else if (interacao){ }
+    if (event.key === "e") { }
+    else if (event.key == "f") { press_F(mao()) }
+    else if (interacao) { }
     else {
         let bloqueado = 0
         const player = document.getElementById("boneco")

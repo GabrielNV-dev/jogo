@@ -19,6 +19,7 @@ export function press_E(tipo, drop, ferramentas, identificacao, quantidade) {
 
         if (vida_entidades <= 0) {
             document.getElementById(identificacao).remove()
+            console.log(drop)
             receber_item(drop, quantidade)
         }
 

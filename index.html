@@ -8,6 +8,43 @@
 </head>
 
 <body>
+  <div id="setas" class="controles">
+    <button id="tab" class="mover" aria-label="Inventário">Inv</button>
+    <button id="interagir" class="mover" aria-label="Interagir">E</button>
+    <button id="comer" class="mover" aria-label="Comer">F</button>
+
+    <button id="cima" class="mover" aria-label="Mover para cima">↑</button>
+    <button id="baixo" class="mover" aria-label="Mover para baixo">↓</button>
+    <button id="esquerda" class="mover" aria-label="Mover para esquerda">←</button>
+    <button id="direita" class="mover" aria-label="Mover para direita">→</button>
+  </div>
+
+  <script>
+    const teclas = {
+      tab: "Tab",
+      interagir: "e",
+      comer: "f",
+      cima: "w",
+      baixo: "s",
+      esquerda: "a",
+      direita: "d"
+    };
+
+    for (const [id, tecla] of Object.entries(teclas)) {
+      document.getElementById(id).addEventListener("click", () => {
+        document.dispatchEvent(new KeyboardEvent("keydown", {
+          key: tecla,
+          bubbles: true
+        }));
+      });
+    }
+  </script>
+
+  <div id="morte" class="morte">
+    <p>Você Morreu</p>
+    <button id="recomecar">recomeçar</button>
+
+  </div>
   <div class="table3x3" id="table3x3"></div>
   <div class="table3x3 result" id="table3x3-result"></div>
   <div class="boneco" id="boneco"></div>

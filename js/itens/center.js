@@ -10,7 +10,7 @@ import { graveto } from "./sprs/spr_graveto.js"
 import { madeira_refinada } from "./sprs/spr_madeira_refinada.js"
 import { craft_table } from "./sprs/spr_craft-table.js"
 import { carne_porco_crua } from "./sprs/spr_carne_porco-crua.js"
-
+import { maca } from "./sprs/spr_maca.js"
 
 function seletor(item) {
     const copia = structuredClone(picareta);
@@ -50,6 +50,7 @@ export const referencia = {
     "pao": pao,
     "graveto": graveto,
     "madeira_refinada" : madeira_refinada,
+    "maca" : maca,
     
     "picareta-madeira": seletor("picareta-madeira"),
     "picareta-pedra": seletor("picareta-pedra"),

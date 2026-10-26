@@ -1,4 +1,4 @@
-import { mao } from "../desktop/hotbar.js";
+import { mao, remover } from "../desktop/hotbar.js";
 import { receber_item, espaco, atualizar_inv } from "../desktop/inventario.js";
 import { atualizar_table3x3 } from "../desktop/table3x3.js";
 import { minerio } from "../itens/sprs/spr_minerio.js";
@@ -9,10 +9,12 @@ import { machados_infos, picaretas_infos } from "../utils.js";
 export var interacao = false;
 
 export function press_F(item) {
-    if (item == "carne-porco-crua"){
-        if(consultar_fome == 10){ return }
-        alimentar(1)
-        
+    if (item == "carne-porco-crua") {
+        if (consultar_fome() != 10) {
+            alimentar(1)
+            remover()
+        }
+
     }
     if (item == "craft-table") {
 

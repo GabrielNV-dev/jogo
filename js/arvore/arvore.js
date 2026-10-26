@@ -115,6 +115,7 @@ document.addEventListener("keydown", (event) => {
             arvoreProxima.id,
             3
         );
+        
         if (
             arvoreEmInteracao &&
             !document.getElementById(arvoreEmInteracao.id)

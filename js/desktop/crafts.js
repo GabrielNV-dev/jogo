@@ -226,7 +226,7 @@ const receitas = [
     {
         tipo: "formato",
         pattern: [
-            ["prata", "prata,0"],
+            ["prata", "prata", 0],
             ["prata", "graveto", 0],
             [0, "graveto", 0]
         ],

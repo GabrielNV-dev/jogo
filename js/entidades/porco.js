@@ -84,7 +84,7 @@ export function inteligenciaPorco(alvo) {
 
                 press_E(
                     "porco",
-                    "carne-porco",
+                    "carne-porco-crua",
                     [
                         "espada-madeira",
                         "espada-pedra",

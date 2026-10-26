@@ -40,6 +40,9 @@
 
 @use './entidade/entidade' as *;
 @use './entidade/porco' as *;
+@use './itens/maca/cores-maca' as *;
+
+
 * {
     margin: 0;
     padding: 0;
@@ -52,4 +55,119 @@ body {
     height: 100vh;
     display: flex;
     background-color: rgba(9, 68, 1, 0.87);
+}
+
+#morte {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(255, 0, 0, 0.5);
+
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 99999;
+    color: white;
+    font-size: 32px;
+}
+
+#morte button {
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+
+/* Controles fixos na tela */
+.controles {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 60px);
+  grid-template-rows: repeat(2, 60px);
+  gap: 8px;
+
+  z-index: 99999;
+}
+
+/* Aparência dos botões */
+.mover {
+  width: 60px;
+  height: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #ffffff40;
+  border-radius: 16px;
+
+  background: linear-gradient(145deg, #6366f1, #4338ca);
+  color: white;
+
+  font-size: 28px;
+  font-weight: bold;
+
+  box-shadow: 0 5px 12px #0005;
+  cursor: pointer;
+
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  transition: transform 0.1s, filter 0.1s;
+}
+
+.mover:hover {
+  filter: brightness(1.2);
+}
+
+.mover:active {
+  transform: scale(0.88);
+  filter: brightness(0.85);
+}
+
+/* Formato de direcional */
+#cima {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+#esquerda {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+#baixo {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+#direita {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+/* Celulares */
+@media (max-width: 600px) {
+  .controles {
+    right: 12px;
+    bottom: 12px;
+    grid-template-columns: repeat(3, 52px);
+    grid-template-rows: repeat(2, 52px);
+    gap: 6px;
+  }
+
+  .mover {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    font-size: 24px;
+  }
 }
