@@ -162,6 +162,11 @@
   align-items: flex-end;
 }
 
+@media screen and (max-width: 800px) {
+  .desktop {
+    bottom: 200px !important;
+  }
+}
 .table2x2,
 .hotbar,
 .inventario {
@@ -181,11 +186,6 @@
   gap: 10px;
 }
 
-@media (max-width: 600px) {
-  .desktop {
-    bottom: 200px;
-  }
-}
 .item-inv {
   display: grid;
   grid-template-columns: repeat(10, 4px);
@@ -711,6 +711,44 @@
   background-color: #663931;
 }
 
+.tocha-marrom-escuro {
+  background-color: #8F583E;
+}
+
+.tocha-marrom {
+  background-color: #663B32;
+}
+
+.tocha-amarelo-claro {
+  background-color: #F8F55E;
+}
+
+.tocha-amarelo {
+  background-color: #F8F23C;
+}
+
+.tocha-amarelo {
+  background-color: #F8F23C;
+}
+
+.tocha-branco {
+  background-color: #ffffff;
+}
+
+.tocha-laranja {
+  background-color: #DE7634;
+}
+
+#tempo {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 20;
+  pointer-events: none;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -753,76 +791,115 @@ body {
   bottom: 20px;
   display: grid;
   grid-template-columns: repeat(3, 60px);
-  grid-template-rows: repeat(2, 60px);
+  grid-template-rows: repeat(3, 60px);
   gap: 8px;
   z-index: 99999;
+  align-items: center;
+  justify-items: center;
+  touch-action: manipulation;
 }
 
-/* Aparência dos botões */
+/* Todos os botões */
 .mover {
   width: 60px;
   height: 60px;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
   border: 1px solid rgba(255, 255, 255, 0.2509803922);
-  border-radius: 16px;
+  border-radius: 14px;
   background: linear-gradient(145deg, #6366f1, #4338ca);
   color: white;
-  font-size: 28px;
+  font-family: Arial, sans-serif;
+  font-size: 24px;
   font-weight: bold;
-  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3333333333);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3333333333);
   cursor: pointer;
   -moz-user-select: none;
        user-select: none;
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
   transition: transform 0.1s, filter 0.1s;
 }
 
 .mover:hover {
-  filter: brightness(1.2);
+  filter: brightness(1.15);
 }
 
 .mover:active {
-  transform: scale(0.88);
+  transform: scale(0.9);
   filter: brightness(0.85);
 }
 
-/* Formato de direcional */
-#cima {
+/* Primeira linha: ações */
+#tab {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+#interagir {
   grid-column: 2;
   grid-row: 1;
 }
 
-#esquerda {
-  grid-column: 1;
-  grid-row: 2;
+#comer {
+  grid-column: 3;
+  grid-row: 1;
 }
 
-#baixo {
+/* Direcional: formato de cruz */
+#cima {
   grid-column: 2;
   grid-row: 2;
 }
 
-#direita {
-  grid-column: 3;
-  grid-row: 2;
+#esquerda {
+  grid-column: 1;
+  grid-row: 3;
 }
 
-/* Celulares */
-@media (max-width: 600px) {
+#baixo {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+#direita {
+  grid-column: 3;
+  grid-row: 3;
+}
+
+/* Telas menores */
+@media (max-width: 981px) {
   .controles {
     right: 12px;
     bottom: 12px;
     grid-template-columns: repeat(3, 52px);
-    grid-template-rows: repeat(2, 52px);
+    grid-template-rows: repeat(3, 52px);
     gap: 6px;
   }
   .mover {
     width: 52px;
     height: 52px;
-    border-radius: 14px;
-    font-size: 24px;
+    border-radius: 12px;
+    font-size: 22px;
+  }
+}
+/* Celulares bem pequenos */
+@media (max-width: 360px) {
+  .controles {
+    right: 8px;
+    bottom: 8px;
+    grid-template-columns: repeat(3, 44px);
+    grid-template-rows: repeat(3, 44px);
+    gap: 5px;
+  }
+  .mover {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    font-size: 19px;
   }
 }/*# sourceMappingURL=index.css.map */

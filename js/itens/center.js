@@ -11,6 +11,7 @@ import { madeira_refinada } from "./sprs/spr_madeira_refinada.js"
 import { craft_table } from "./sprs/spr_craft-table.js"
 import { carne_porco_crua } from "./sprs/spr_carne_porco-crua.js"
 import { maca } from "./sprs/spr_maca.js"
+import { tocha } from "./sprs/spr_tocha.js"
 
 function seletor(item) {
     const copia = structuredClone(picareta);
@@ -43,6 +44,7 @@ function seletor_pa(item) {
 }
 
 export const referencia = {
+    "tocha": tocha,
     "carne-porco-crua": carne_porco_crua,
     "craft-table": craft_table,
     "madeira_bruta": madeira_bruta,

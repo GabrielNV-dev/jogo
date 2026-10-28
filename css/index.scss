@@ -42,6 +42,9 @@
 @use './entidade/porco' as *;
 @use './itens/maca/cores-maca' as *;
 
+@use './itens/tocha/cores-tocha' as *;
+@use './tempo/tempo' as *; 
+@use './tempo/luz_tocha' as *;
 
 * {
     margin: 0;
@@ -56,6 +59,9 @@ body {
     display: flex;
     background-color: rgba(9, 68, 1, 0.87);
 }
+
+
+
 
 #morte {
     position: fixed;
@@ -84,90 +90,134 @@ body {
 
 /* Controles fixos na tela */
 .controles {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
 
-  display: grid;
-  grid-template-columns: repeat(3, 60px);
-  grid-template-rows: repeat(2, 60px);
-  gap: 8px;
+    display: grid;
+    grid-template-columns: repeat(3, 60px);
+    grid-template-rows: repeat(3, 60px);
+    gap: 8px;
 
-  z-index: 99999;
+    z-index: 99999;
+    align-items: center;
+    justify-items: center;
+
+    touch-action: manipulation;
 }
 
-/* Aparência dos botões */
+/* Todos os botões */
 .mover {
-  width: 60px;
-  height: 60px;
+    width: 60px;
+    height: 60px;
+    box-sizing: border-box;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  border: 1px solid #ffffff40;
-  border-radius: 16px;
+    padding: 0;
+    border: 1px solid #ffffff40;
+    border-radius: 14px;
 
-  background: linear-gradient(145deg, #6366f1, #4338ca);
-  color: white;
+    background: linear-gradient(145deg, #6366f1, #4338ca);
+    color: white;
 
-  font-size: 28px;
-  font-weight: bold;
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
 
-  box-shadow: 0 5px 12px #0005;
-  cursor: pointer;
+    box-shadow: 0 4px 8px #0005;
+    cursor: pointer;
 
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 
-  transition: transform 0.1s, filter 0.1s;
+    transition: transform 0.1s, filter 0.1s;
 }
 
 .mover:hover {
-  filter: brightness(1.2);
+    filter: brightness(1.15);
 }
 
 .mover:active {
-  transform: scale(0.88);
-  filter: brightness(0.85);
+    transform: scale(0.90);
+    filter: brightness(0.85);
 }
 
-/* Formato de direcional */
+/* Primeira linha: ações */
+#tab {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+#interagir {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#comer {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+/* Direcional: formato de cruz */
 #cima {
-  grid-column: 2;
-  grid-row: 1;
+    grid-column: 2;
+    grid-row: 2;
 }
 
 #esquerda {
-  grid-column: 1;
-  grid-row: 2;
+    grid-column: 1;
+    grid-row: 3;
 }
 
 #baixo {
-  grid-column: 2;
-  grid-row: 2;
+    grid-column: 2;
+    grid-row: 3;
 }
 
 #direita {
-  grid-column: 3;
-  grid-row: 2;
+    grid-column: 3;
+    grid-row: 3;
 }
 
-/* Celulares */
-@media (max-width: 600px) {
-  .controles {
-    right: 12px;
-    bottom: 12px;
-    grid-template-columns: repeat(3, 52px);
-    grid-template-rows: repeat(2, 52px);
-    gap: 6px;
-  }
+/* Telas menores */
+@media (max-width: 981px) {
+    .controles {
+        right: 12px;
+        bottom: 12px;
 
-  .mover {
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
-    font-size: 24px;
-  }
+        grid-template-columns: repeat(3, 52px);
+        grid-template-rows: repeat(3, 52px);
+        gap: 6px;
+    }
+
+    .mover {
+        width: 52px;
+        height: 52px;
+        border-radius: 12px;
+        font-size: 22px;
+    }
+}
+
+/* Celulares bem pequenos */
+@media (max-width: 360px) {
+    .controles {
+        right: 8px;
+        bottom: 8px;
+
+        grid-template-columns: repeat(3, 44px);
+        grid-template-rows: repeat(3, 44px);
+        gap: 5px;
+    }
+
+    .mover {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        font-size: 19px;
+    }
 }
