@@ -12,7 +12,7 @@ let locacao = setInterval(() => {
 
     intensidade += direcao * 0.01;
 
-    if (intensidade >= 1) {
+    if (intensidade >= 0.850) {
         intensidade = 1;
         direcao = -1;
     }
