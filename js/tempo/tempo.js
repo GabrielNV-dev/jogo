@@ -1,20 +1,24 @@
-let estacionado = 5 //minutos
-let tempo = "dia" / "noite"
+let estacionado = 5; // minutos
+let tempo = "dia";
 
-function transicao(modo) {
-    tempo = tempo == "dia" ? "noite" : "dia"
-    let intensidade = tempo == "dia" ? 0.0 : 0.85
+tempo = tempo === "dia" ? "noite" : "dia";
 
-    let locacao = setInterval(() => {
-        document.getElementById("tempo").style.background = `rgba(0, 0, 0, ${intensidade})`
-        if (tempo == "dia") { intensidade += 0.1 } else { intensidade -= 0.1 }
-        if (intensidade >= 0.85 || intensidade <= 0.0) {
-            clearInterval(locacao);
-        }
-    }, 1000);
-}
+let direcao = 1;
+let intensidade = 0.00;
 
-setInterval(() => {
-    console.log("ee")
-    transicao(tempo)
-}, estacionado * 60 * 1000);
+let locacao = setInterval(() => {
+    document.getElementById("tempo").style.background =
+        `rgba(0, 0, 0, ${intensidade})`;
+
+    intensidade += direcao * 0.01;
+
+    if (intensidade >= 1) {
+        intensidade = 1;
+        direcao = -1;
+    }
+
+    if (intensidade <= 0) {
+        intensidade = 0;
+        direcao = 1;
+    }
+}, 1000);
