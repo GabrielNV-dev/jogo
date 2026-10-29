@@ -10,12 +10,8 @@ export var interacao = false;
 let luzAtiva = false;
 export function press_F(item) {
 
-
-
     if (item == "tocha") {
-        console.log(luzAtiva)
         luzAtiva = !luzAtiva
-        console.log(luzAtiva)
         const boneco = document.getElementById("boneco");
         const tempo = document.getElementById("tempo");
 
@@ -39,7 +35,6 @@ export function press_F(item) {
             tempo.style.webkitMaskImage = gradiente;
         }
         if (luzAtiva) { atualizarLuz() }
-        console.log(luzAtiva)
         document.addEventListener("keydown", (event) => {
             if (luzAtiva) { atualizarLuz() }
             else {

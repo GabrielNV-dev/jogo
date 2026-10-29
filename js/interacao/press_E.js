@@ -22,7 +22,6 @@ export function press_E(tipo, drop, ferramentas, identificacao, quantidade) {
             console.log(drop)
             receber_item(drop, quantidade)
         }
-
     }
 
     if (tipo === "minerio") {

@@ -58,9 +58,6 @@ document.addEventListener("keydown", (event) => {
     document.querySelectorAll(".arvore").forEach(item => {
         const rect = item.getBoundingClientRect();
 
-        const distanciaX = Math.round((rect.left - posicao.right) / 10) * 10
-        const distanciaY = Math.round((rect.top - posicao.bottom) / 10) * 10
-
         const entidade_left = Math.round(parseFloat(item.style.left) / 10) * 10;
         const entidade_top = Math.round(parseFloat(item.style.top) / 10) * 10;
 

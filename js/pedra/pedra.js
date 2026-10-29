@@ -28,29 +28,38 @@ const cores = {
 const minerios = ["P", "A", "K", "J", "H", "N", "Q", "R", "U"];
 
 function atualizar_pedra(sprit, id, cores) {
-
     const elemento = document.getElementById(id);
-    elemento.innerHTML = ""
-    const minerio = minerios.find(minerio => elemento.classList.contains(minerio));
 
+    if (!elemento) return;
+
+    // Identifica o minério antes de reconstruir os pixels
+    const minerioSelecionado = minerios.find(tipo =>
+        elemento.classList.contains(tipo)
+    );
+
+    if (!minerioSelecionado) return;
+
+    // Limpa os pixels anteriores
+    elemento.innerHTML = "";
+
+    // Reconstrói o sprite
     sprit.forEach(linha => {
         [...linha].forEach(pixel => {
             const div = document.createElement("div");
+
             div.classList.add("pixel");
 
-
-            if (pixel == "M") {
-                div.classList.add(cores[minerio]);
-            }
-
-            if (cores[pixel]) {
+            // O pixel M representa o minério da pedra
+            if (pixel === "M") {
+                div.classList.add(cores[minerioSelecionado]);
+            } else if (cores[pixel]) {
                 div.classList.add(cores[pixel]);
             }
+
             elemento.appendChild(div);
         });
     });
 }
-
 export function criarPedra(sprit, x, y, id) {
     const elemento = document.createElement("div");
     const minerio = minerios[Math.floor(Math.random() * minerios.length)];
@@ -83,10 +92,26 @@ export function criarPedra(sprit, x, y, id) {
     document.body.appendChild(elemento);
 }
 
-export async function fracasso(alvo) {
-    atualizar_pedra(pedra.fracasso, alvo, cores)
+export function fracasso(alvo) {
+    if (!document.getElementById(alvo)) return;
+
+    atualizar_pedra(
+        pedra.fracasso,
+        alvo,
+        cores
+    );
+
     setTimeout(() => {
-        atualizar_pedra(pedra.interacao, alvo, cores)
+        if (!document.getElementById(alvo)) return;
+
+        // Se o jogador já saiu de perto, não volta pro sprite de interação
+        if (!pedraEmInteracao || pedraEmInteracao.id !== alvo) return;
+
+        atualizar_pedra(
+            pedra.interacao,
+            alvo,
+            cores
+        );
     }, 1000);
 }
 export function informar_vida(id, vida) {
@@ -133,7 +158,6 @@ export function informar_vida(id, vida) {
     vidaBarra.style.width = `${vida}%`
 }
 
-let pedraEmInteracao = null;
 const ferramentas = {
     P: ["picareta-obamium", "picareta-rubi", "picareta-esmeralda", "picareta-diamante", "picareta-ouro", "picareta-ferro", "picareta-prata", "picareta-pedra", "picareta-madeira"],
     A: ["picareta-obamium", "picareta-rubi", "picareta-esmeralda", "picareta-diamante", "picareta-ouro"],
@@ -145,58 +169,61 @@ const ferramentas = {
     R: ["picareta-obamium", "picareta-rubi", "picareta-esmeralda", "picareta-diamante"],
     U: ["picareta-obamium", "picareta-rubi", "picareta-esmeralda", "picareta-diamante", "picareta-ouro", "picareta-ferro", "picareta-prata", "picareta-pedra"]
 };
+
+let pedraEmInteracao = null;
+
+// Roda DEPOIS que todos os listeners de keydown (inclusive o de movimento) terminarem,
+// assim a posição do jogador já está atualizada quando calculamos a proximidade.
 document.addEventListener("keydown", (event) => {
+    requestAnimationFrame(() => processar_pedra(event));
+});
+
+function processar_pedra(event) {
     const tecla = event.key.toLowerCase();
-
-    //ARRUMAR ESSA BOSTA DEPOIS
-    if (event.key == "w" || event.key == "s" || event.key == "d" || event.key == "a") { vida = 100 }
+    
+    // Ignora teclas que não afetam a interação com pedras
     if (!["w", "a", "s", "d", "e"].includes(tecla)) return;
+    
+    if (event.key == "w" || event.key == "s" || event.key == "d" || event.key == "a") {
+        vida = 100;
+    }
 
-    const player = document.getElementById("boneco")
-    var posicao = player.getBoundingClientRect();
+    const player = document.getElementById("boneco");
+    if (!player) return;
 
-
+    const posicao = player.getBoundingClientRect();
     let pedraProxima = null;
 
     const player_left = Math.round(parseFloat(player.style.left) / 10) * 10;
     const player_top = Math.round(parseFloat(player.style.top) / 10) * 10;
 
-    document.querySelectorAll(".pedra").forEach(item2 => {
-        const rect2 = item2.getBoundingClientRect();
-        const minerio = minerios.find(minerio => item2.classList.contains(minerio));
+    document.querySelectorAll(".pedra").forEach(item => {
+        const rect = item.getBoundingClientRect();
 
-        const entidade_left = Math.round(parseFloat(item2.style.left) / 10) * 10;
-        const entidade_top = Math.round(parseFloat(item2.style.top) / 10) * 10;
-        const ferramentas = {
-            P: ["picareta-obamium", "picareta-rubi", "picareta-esmeralda", "picareta-diamante", "picareta-ouro", "picareta-ferro", "picareta-prata", "picareta-pedra", "picareta-madeira"],
-            A: ["picareta-obamium", "picareta-rubi", "picareta-esmeralda", "picareta-diamante", "picareta-ouro"],
-            K: ["picareta-obamium", "picareta-rubi", "picareta-esmeralda", "picareta-diamante", "picareta-ouro", "picareta-ferro", "picareta-prata"],
-            J: ["picareta-obamium", "picareta-rubi", "picareta-esmeralda", "picareta-diamante", "picareta-ouro", "picareta-ferro",],
-            H: ["picareta-obamium", "picareta-rubi", "picareta-esmeralda", "picareta-diamante", "picareta-ouro", "picareta-ferro", "picareta-prata", "picareta-pedra"],
-            N: ["picareta-obamium", "picareta-rubi", "picareta-esmeralda"],
-            Q: ["picareta-obamium", "picareta-rubi",],
-            R: ["picareta-obamium", "picareta-rubi", "picareta-esmeralda", "picareta-diamante"],
-            U: ["picareta-obamium", "picareta-rubi", "picareta-esmeralda", "picareta-diamante", "picareta-ouro", "picareta-ferro", "picareta-prata", "picareta-pedra"]
-        }
+        const entidade_left = Math.round(parseFloat(item.style.left) / 10) * 10;
+        const entidade_top = Math.round(parseFloat(item.style.top) / 10) * 10;
 
-        const perto = player_left + 20 >= entidade_left && player_top >= entidade_top && player_top <= entidade_top + 20 && player_left <= entidade_left
+        const perto =
+            player_left + 20 >= entidade_left &&
+            player_top >= entidade_top &&
+            player_top <= entidade_top + 20 &&
+            player_left <= entidade_left
             ||
             player_left >= entidade_left &&
             player_left <= entidade_left + 20 &&
             player_top >= entidade_top &&
             player_top <= entidade_top + 20
             ||
-
             player_top - 30 <= entidade_top &&
             player_left <= entidade_left + 13 &&
             player_left >= entidade_left - 13 &&
-            player_top - 30 >= entidade_top
+            player_top - 30 >= entidade_top;
 
         if (perto) {
-            pedraProxima = item2;
+            pedraProxima = item;
         }
+    });
 
-    })
     if (pedraProxima !== pedraEmInteracao) {
         if (pedraEmInteracao) {
             atualizar_pedra(
@@ -217,12 +244,11 @@ document.addEventListener("keydown", (event) => {
         pedraEmInteracao = pedraProxima;
     }
 
-    if (event.key == "e" && pedraProxima) {
-
-
+    if (tecla === "e" && pedraProxima) {
         const minerioSelecionado = minerios.find(tipo =>
             pedraProxima.classList.contains(tipo)
-        )
+        );
+
         press_E(
             "minerio",
             cores[minerioSelecionado],
@@ -230,14 +256,16 @@ document.addEventListener("keydown", (event) => {
             pedraProxima.id,
             2
         );
+
         if (
             pedraEmInteracao &&
             !document.getElementById(pedraEmInteracao.id)
         ) {
             pedraEmInteracao = null;
         }
+
         if (vida == 0) {
             pedraEmInteracao = null;
         }
     }
-});
+}
