@@ -1,6 +1,6 @@
 import { pedra } from "./spr_pedra.js";
 import { press_E } from "../interacao/press_E.js";
-import { minerio } from "../itens/sprs/spr_minerio.js";
+import { aplicarSprite } from "../sprites.js";
 
 export var vida = 100
 export function diminuir_vida(valor) {
@@ -27,38 +27,22 @@ const cores = {
 // Aqui onde é gerado aleatoriamente, mais para frente definir isto em coordenadas
 const minerios = ["P", "A", "K", "J", "H", "N", "Q", "R", "U"];
 
-function atualizar_pedra(sprit, id, cores) {
+const coresPorMinerio = Object.fromEntries(
+    minerios.map(tipo => [tipo, { ...cores, M: cores[tipo] }])
+);
+
+function atualizar_pedra(sprit, id) {
     const elemento = document.getElementById(id);
 
     if (!elemento) return;
 
-    // Identifica o minério antes de reconstruir os pixels
     const minerioSelecionado = minerios.find(tipo =>
         elemento.classList.contains(tipo)
     );
 
     if (!minerioSelecionado) return;
 
-    // Limpa os pixels anteriores
-    elemento.innerHTML = "";
-
-    // Reconstrói o sprite
-    sprit.forEach(linha => {
-        [...linha].forEach(pixel => {
-            const div = document.createElement("div");
-
-            div.classList.add("pixel");
-
-            // O pixel M representa o minério da pedra
-            if (pixel === "M") {
-                div.classList.add(cores[minerioSelecionado]);
-            } else if (cores[pixel]) {
-                div.classList.add(cores[pixel]);
-            }
-
-            elemento.appendChild(div);
-        });
-    });
+    aplicarSprite(elemento, sprit, coresPorMinerio[minerioSelecionado]);
 }
 export function criarPedra(sprit, x, y, id) {
     const elemento = document.createElement("div");
@@ -67,27 +51,11 @@ export function criarPedra(sprit, x, y, id) {
     elemento.classList.add("pedra");
     elemento.classList.add(minerio);
     elemento.classList.add("objeto");
-    elemento.classList.add("100");
 
     elemento.style.left = `${x}px`;
     elemento.style.top = `${y}px`;
     elemento.id = id;
-    sprit.forEach(linha => {
-        [...linha].forEach(pixel => {
-            const div = document.createElement("div");
-
-
-            div.classList.add("pixel");
-            if (pixel == "M") {
-                div.classList.add(cores[minerio]);
-            }
-            else if (cores[pixel]) {
-                div.classList.add(cores[pixel]);
-            }
-
-            elemento.appendChild(div);
-        });
-    });
+    aplicarSprite(elemento, sprit, coresPorMinerio[minerio]);
 
     document.body.appendChild(elemento);
 }
@@ -95,11 +63,7 @@ export function criarPedra(sprit, x, y, id) {
 export function fracasso(alvo) {
     if (!document.getElementById(alvo)) return;
 
-    atualizar_pedra(
-        pedra.fracasso,
-        alvo,
-        cores
-    );
+    atualizar_pedra(pedra.fracasso, alvo);
 
     setTimeout(() => {
         if (!document.getElementById(alvo)) return;
@@ -107,11 +71,7 @@ export function fracasso(alvo) {
         // Se o jogador já saiu de perto, não volta pro sprite de interação
         if (!pedraEmInteracao || pedraEmInteracao.id !== alvo) return;
 
-        atualizar_pedra(
-            pedra.interacao,
-            alvo,
-            cores
-        );
+        atualizar_pedra(pedra.interacao, alvo);
     }, 1000);
 }
 export function informar_vida(id, vida) {
@@ -191,14 +151,12 @@ function processar_pedra(event) {
     const player = document.getElementById("boneco");
     if (!player) return;
 
-    const posicao = player.getBoundingClientRect();
     let pedraProxima = null;
 
     const player_left = Math.round(parseFloat(player.style.left) / 10) * 10;
     const player_top = Math.round(parseFloat(player.style.top) / 10) * 10;
 
     document.querySelectorAll(".pedra").forEach(item => {
-        const rect = item.getBoundingClientRect();
 
         const entidade_left = Math.round(parseFloat(item.style.left) / 10) * 10;
         const entidade_top = Math.round(parseFloat(item.style.top) / 10) * 10;
@@ -226,19 +184,11 @@ function processar_pedra(event) {
 
     if (pedraProxima !== pedraEmInteracao) {
         if (pedraEmInteracao) {
-            atualizar_pedra(
-                pedra.padrao,
-                pedraEmInteracao.id,
-                cores
-            );
+            atualizar_pedra(pedra.padrao, pedraEmInteracao.id);
         }
 
         if (pedraProxima) {
-            atualizar_pedra(
-                pedra.interacao,
-                pedraProxima.id,
-                cores
-            );
+            atualizar_pedra(pedra.interacao, pedraProxima.id);
         }
 
         pedraEmInteracao = pedraProxima;

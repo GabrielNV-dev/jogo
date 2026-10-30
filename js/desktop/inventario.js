@@ -1,12 +1,11 @@
 import { realizar_receitas, craftar } from "./crafts.js";
-import { itens, atualizar } from "../utils.js";
-import { result, table2x2, receber_result } from "./table2x2.js";
+import { atualizar } from "../utils.js";
+import { result, table2x2 } from "./table2x2.js";
 import { hotbar, atualizar_hotbar } from "./hotbar.js";
 import { referencia, nada } from "../itens/center.js";
 import {
     table3x3,
     result as result3x3,
-    receber_result as receber_result3x3,
     atualizar_table3x3
 } from "./table3x3.js";
 

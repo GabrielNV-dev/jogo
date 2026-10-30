@@ -1,5 +1,5 @@
 import { boneco } from "./spr_player.js";
-import { itens, atualizar } from "../utils.js";
+import { atualizar } from "../utils.js";
 import { selecionar, atualizar_hotbar, mao } from "../desktop/hotbar.js";
 import { press_F, interacao } from "../interacao/press_F.js"
 const cores = {
@@ -14,7 +14,6 @@ const cores = {
 
 atualizar(boneco.frente[1], "boneco", cores)
 let animacao = 0
-let vizu_inv = 0
 let _vida = 10;
 let vida = {
     get valor() {
@@ -47,7 +46,7 @@ export function consultar_fome() {
     return fome.valor
 }
 let contador = 10
-let gasto = 1000
+let gasto = 2000
 async function gestor_fome() {
     setInterval(() => {
 
@@ -89,7 +88,7 @@ document.addEventListener("keydown", (event) => {
     else {
         let bloqueado = 0
         const player = document.getElementById("boneco")
-        var posicao = player.getBoundingClientRect();
+        
         let step = 10
 
         const player_left = Math.round(parseFloat(player.style.left) / 10) * 10;
@@ -97,13 +96,10 @@ document.addEventListener("keydown", (event) => {
 
         document.querySelectorAll(".objeto").forEach(entidade => {
 
-            const rect2 = entidade.getBoundingClientRect();
 
             const entidade_left = Math.round(parseFloat(entidade.style.left) / 10) * 10;
             const entidade_top = Math.round(parseFloat(entidade.style.top) / 10) * 10;
 
-            const distanciaX = rect2.left - posicao.right;
-            const distanciaY = rect2.top - posicao.bottom;
 
             if (entidade.classList.contains("arvore")) {
                 if (player_left + 20 >= entidade_left && player_top >= entidade_top && player_top <= entidade_top + 20 && player_left <= entidade_left && event.key == "d") { bloqueado = 10 }
@@ -168,13 +164,10 @@ document.addEventListener("keydown", (event) => {
         });
         document.querySelectorAll(".entidade").forEach(entidade => {
 
-            const rect2 = entidade.getBoundingClientRect();
 
             const entidade_left = Math.round(parseFloat(entidade.style.left) / 10) * 10;
             const entidade_top = Math.round(parseFloat(entidade.style.top) / 10) * 10;
 
-            const distanciaX = rect2.left - posicao.right;
-            const distanciaY = rect2.top - posicao.bottom;
 
             if (entidade.classList.contains("porco")) {
                 if (player_left + 20 >= entidade_left && player_top >= entidade_top && player_top <= entidade_top + 20 && player_left <= entidade_left && event.key == "d") { bloqueado = 10 }
@@ -214,7 +207,7 @@ document.addEventListener("keydown", (event) => {
             if (parseInt(getComputedStyle(player).top) <= 0 || bloqueado == 30) { }
             else {
                 player.style.top = (parseInt(getComputedStyle(player).top) - step) + "px";
-                if (posicao.top <= window.innerHeight / 2) {
+                if (player.getBoundingClientRect().top <= window.innerHeight / 2) {
                     window.scrollBy({
                         top: -step,
                         behavior: "smooth"
@@ -228,7 +221,7 @@ document.addEventListener("keydown", (event) => {
             if (parseInt(getComputedStyle(player).top) >= 1800 || bloqueado == 40) { }
             else {
                 player.style.top = (parseInt(getComputedStyle(player).top) + step) + "px";
-                if (posicao.top >= window.innerHeight / 2) {
+                if (player.getBoundingClientRect().top >= window.innerHeight / 2) {
                     window.scrollBy({
                         top: step,
                         behavior: "smooth"
@@ -248,7 +241,7 @@ document.addEventListener("keydown", (event) => {
             if (parseInt(getComputedStyle(player).left) <= 0 || bloqueado == 20) { }
             else {
                 player.style.left = (parseInt(getComputedStyle(player).left) - step) + "px";
-                if (posicao.left <= window.innerWidth / 2) {
+                if (player.getBoundingClientRect().left <= window.innerWidth / 2) {
                     window.scrollBy({
                         left: -step,
                         behavior: "smooth"
@@ -261,7 +254,7 @@ document.addEventListener("keydown", (event) => {
             if (parseInt(getComputedStyle(player).left) >= 2500 || bloqueado == 10) { }
             else {
                 player.style.left = (parseInt(getComputedStyle(player).left) + step) + "px";
-                if (posicao.left >= window.innerWidth / 2) {
+                if (player.getBoundingClientRect().left >= window.innerWidth / 2) {
                     window.scrollBy({
                         left: step,
                         behavior: "smooth"

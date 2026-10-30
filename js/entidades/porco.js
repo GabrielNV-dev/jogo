@@ -1,5 +1,5 @@
 
-import { atualizar } from "../utils.js";
+import { aplicarSprite, trocarSprite } from "../sprites.js";
 import { porco } from "./sprs/spr_porco.js";
 import { press_E } from "../interacao/press_E.js";
 
@@ -22,19 +22,7 @@ export function criarPorco(sprit, x, y, id) {
     elemento.style.top = `${y}px`;
     elemento.id = id;
 
-    sprit.forEach(linha => {
-        [...linha].forEach(pixel => {
-            const div = document.createElement("div");
-
-            div.classList.add("pixel");
-
-            if (cores[pixel]) {
-                div.classList.add(cores[pixel]);
-            }
-
-            elemento.appendChild(div);
-        });
-    });
+    aplicarSprite(elemento, sprit, cores);
 
     document.body.appendChild(elemento);
 
@@ -189,13 +177,13 @@ export function inteligenciaPorco(alvo) {
         porcoElemento.style.top = `${novoY}px`;
 
         if (direcao === 1) {
-            atualizar(porco.esquerda, alvo, cores);
+            trocarSprite(alvo, porco.esquerda, cores);
         } else if (direcao === 2) {
-            atualizar(porco.direita, alvo, cores);
+            trocarSprite(alvo, porco.direita, cores);
         } else if (direcao === 3) {
-            atualizar(porco.costas, alvo, cores);
+            trocarSprite(alvo, porco.costas, cores);
         } else if (direcao === 4) {
-            atualizar(porco.frente, alvo, cores);
+            trocarSprite(alvo, porco.frente, cores);
         }
 
         passosRestantes--;

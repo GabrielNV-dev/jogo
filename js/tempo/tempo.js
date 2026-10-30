@@ -1,19 +1,17 @@
-let estacionado = 5; // minutos
 let tempo = "dia";
 
-tempo = tempo === "dia" ? "noite" : "dia";
-
 let direcao = 1;
-let intensidade = 0.00;
+let intensidade = 0;
 
-let locacao = setInterval(() => {
-    document.getElementById("tempo").style.background =
-        `rgba(0, 0, 0, ${intensidade})`;
+setInterval(() => {
+    const elemento = document.getElementById("tempo");
 
-    intensidade += direcao * 0.01;
+    elemento.style.background = `rgba(0, 0, 0, ${intensidade})`;
 
-    if (intensidade >= 0.850) {
-        intensidade = 1;
+    intensidade += direcao * 0.001;
+
+    if (intensidade >= 0.85) {
+        intensidade = 0.85;
         direcao = -1;
     }
 

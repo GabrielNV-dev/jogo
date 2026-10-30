@@ -1,4 +1,4 @@
-import { receber_result as receber_result3x3 } from "./table3x3.js";
+
 import { atualizar } from "../utils.js";
 import { referencia, nada } from "../itens/center.js";
 

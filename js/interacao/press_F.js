@@ -1,47 +1,93 @@
-import { mao, remover } from "../desktop/hotbar.js";
-import { receber_item, espaco, atualizar_inv } from "../desktop/inventario.js";
-import { atualizar_table3x3 } from "../desktop/table3x3.js";
-import { minerio } from "../itens/sprs/spr_minerio.js";
-import { fracasso, informar_vida, diminuir_vida, vida } from "../pedra/pedra.js";
+import { remover } from "../desktop/hotbar.js";
+import { atualizar_inv } from "../desktop/inventario.js";
+import { tocha } from "../itens/sprs/spr_tocha.js";
 import { consultar_fome, alimentar } from "../player/player.js";
-import { machados_infos, picaretas_infos } from "../utils.js";
+import { aplicarSprite } from "../sprites.js";
 
 export var interacao = false;
-let luzAtiva = false;
+
+const tochas = [];
+let quadroLuz = null;
+
+const coresTocha = { ...tocha.cores };
+delete coresTocha.N;
+
+const RAIO_LUZ = 150;
+const PE_TOCHA = 3;
+
+export function CriarObject(sprit, x, y, cores, id) {
+    const elemento = document.createElement("div");
+
+    elemento.classList.add("objeto");
+    elemento.style.position = "absolute";
+    elemento.style.left = `${x}px`;
+    elemento.style.top = `${y}px`;
+    elemento.id = id;
+
+    aplicarSprite(elemento, sprit, cores);
+
+    document.body.appendChild(elemento);
+    return elemento;
+}
+
+function posicaoDe(elemento) {
+    const estilo = getComputedStyle(elemento);
+    return { x: parseFloat(estilo.left), y: parseFloat(estilo.top) };
+}
+
+function atualizarLuz(agora) {
+    const tempo = document.getElementById("tempo");
+    const largura = window.innerWidth;
+    const altura = window.innerHeight;
+    const luzes = [];
+
+    tochas.forEach((t, i) => {
+        const raio = RAIO_LUZ + Math.sin(agora / 110 + i) * 4 + Math.sin(agora / 37 + i * 2) * 2;
+        const x = t.x - window.scrollX;
+        const y = t.y - window.scrollY;
+
+        if (x < -raio || x > largura + raio || y < -raio || y > altura + raio) return;
+
+        luzes.push(`radial-gradient(circle ${raio}px at ${x}px ${y}px, transparent 0%, transparent 10%, black 100%)`);
+    });
+
+    const mascara = luzes.length ? luzes.join(",") : "linear-gradient(black, black)";
+
+    tempo.style.maskImage = mascara;
+    tempo.style.webkitMaskImage = mascara;
+    tempo.style.maskComposite = "intersect";
+    tempo.style.webkitMaskComposite = "source-in";
+
+    quadroLuz = requestAnimationFrame(atualizarLuz);
+}
+
+function colocarTocha() {
+    const boneco = document.getElementById("boneco");
+    if (!boneco) return;
+
+    const tempo = document.getElementById("tempo");
+    tempo.style.display = "block";
+    tempo.style.pointerEvents = "none";
+
+    const pos = posicaoDe(boneco);
+    const x = pos.x;
+    const y = pos.y + PE_TOCHA;
+
+    CriarObject(tocha.padrao, x, y, coresTocha, `tocha-${tochas.length}-${Date.now()}`);
+
+    tochas.push({ x: x + 15, y: y + 12 });
+
+    if (quadroLuz === null) {
+        quadroLuz = requestAnimationFrame(atualizarLuz);
+    }
+
+    remover();
+}
+
 export function press_F(item) {
 
     if (item == "tocha") {
-        luzAtiva = !luzAtiva
-        const boneco = document.getElementById("boneco");
-        const tempo = document.getElementById("tempo");
-
-        tempo.style.display = "block";
-        tempo.style.pointerEvents = "none";
-
-        function atualizarLuz() {
-            const rect = boneco.getBoundingClientRect();
-
-            const x = rect.left + rect.width / 2;
-            const y = rect.top + rect.height / 2;
-
-            const gradiente = `radial-gradient(
-        circle 150px at ${x}px ${y}px,
-        transparent 0%,
-        transparent 10%,
-        black 100%
-    )`;
-
-            tempo.style.maskImage = gradiente;
-            tempo.style.webkitMaskImage = gradiente;
-        }
-        if (luzAtiva) { atualizarLuz() }
-        document.addEventListener("keydown", (event) => {
-            if (luzAtiva) { atualizarLuz() }
-            else {
-                tempo.style.maskImage = "none";
-                tempo.style.webkitMaskImage = "none";
-            }
-        });
+        colocarTocha();
     }
     if (item == "carne-porco-crua") {
         if (consultar_fome() != 10) {
