@@ -1,0 +1,222 @@
+@use './cores/cores' as *;
+
+@use './arvore/avore' as *;
+@use './pedra/pedra' as *;
+@use './grama/grama' as *;
+
+@use './desktop/hotbar/hotbar' as *;
+@use './desktop/desktop' as *;
+@use './desktop/inventario/inventario' as *;
+@use './desktop/table2x2/table2x2' as *;
+@use './desktop/table3x3/table3x3' as *;
+@use './desktop/result/result' as *;
+
+@use './hud/infos/fome' as *;
+@use './hud/infos/vida' as *;
+@use './hud/infos' as *;
+
+@use './pixeis/pixel' as *;
+
+@use './player/player' as *;
+
+@use './itens/pixel-itens' as *;
+
+@use './itens/madeira_bruta/cores-madeira_bruta' as *;
+@use './itens/madeira_refinada/cores-madeira_refinada' as *;
+
+@use './itens/graveto/cores-graveto' as *;
+
+@use './itens/picareta/cores-picareta' as *;
+@use './itens/pedra-m/cores-pedra-m' as *;
+@use './itens/machado/cores-machado' as *;
+@use './itens/espada/cores-espada' as *;
+@use './itens/pa/cores-pa' as *;
+@use './itens/pao/cores-pao' as *;
+
+@use './itens/minerios/cores-minerios' as *;
+@use './itens/craft-table/craft-table' as *;
+
+@use './itens/carne-porco/carne-porco' as *;
+
+@use './entidade/entidade' as *;
+@use './entidade/porco' as *;
+@use './itens/maca/cores-maca' as *;
+
+@use './itens/tocha/cores-tocha' as *;
+@use './tempo/tempo' as *; 
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    margin: 0px;
+    height: 100vh;
+    display: flex;
+    background-color: rgba(9, 68, 1, 0.87);
+}
+
+
+
+
+#morte {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(255, 0, 0, 0.5);
+
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 99999;
+    color: white;
+    font-size: 32px;
+}
+
+#morte button {
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+
+/* Controles fixos na tela */
+.controles {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 60px);
+    grid-template-rows: repeat(3, 60px);
+    gap: 8px;
+
+    z-index: 99999;
+    align-items: center;
+    justify-items: center;
+
+    touch-action: manipulation;
+}
+
+/* Todos os botões */
+.mover {
+    width: 60px;
+    height: 60px;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+    border: 1px solid #ffffff40;
+    border-radius: 14px;
+
+    background: linear-gradient(145deg, #6366f1, #4338ca);
+    color: white;
+
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+
+    box-shadow: 0 4px 8px #0005;
+    cursor: pointer;
+
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+
+    transition: transform 0.1s, filter 0.1s;
+}
+
+.mover:hover {
+    filter: brightness(1.15);
+}
+
+.mover:active {
+    transform: scale(0.90);
+    filter: brightness(0.85);
+}
+
+/* Primeira linha: ações */
+#tab {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+#interagir {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#comer {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+/* Direcional: formato de cruz */
+#cima {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+#esquerda {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+#baixo {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+#direita {
+    grid-column: 3;
+    grid-row: 3;
+}
+
+/* Telas menores */
+@media (max-width: 981px) {
+    .controles {
+        right: 12px;
+        bottom: 12px;
+
+        grid-template-columns: repeat(3, 52px);
+        grid-template-rows: repeat(3, 52px);
+        gap: 6px;
+    }
+
+    .mover {
+        width: 52px;
+        height: 52px;
+        border-radius: 12px;
+        font-size: 22px;
+    }
+}
+
+/* Celulares bem pequenos */
+@media (max-width: 360px) {
+    .controles {
+        right: 8px;
+        bottom: 8px;
+
+        grid-template-columns: repeat(3, 44px);
+        grid-template-rows: repeat(3, 44px);
+        gap: 5px;
+    }
+
+    .mover {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        font-size: 19px;
+    }
+}

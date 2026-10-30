@@ -1,0 +1,43 @@
+
+.boneco {
+    left: 1250px;
+    top: 900px;
+    display: grid;
+    grid-template-columns: repeat(10, 3px);
+    position: absolute;
+    
+}
+.pele {
+    background: #f2b36f;
+    z-index: 3;
+}
+
+.cabelo {
+    background: #4b2a18;
+    z-index: 3;
+}
+
+.roupa {
+    background: #2979ff;
+    z-index: 3;
+}
+
+.calca {
+    background: #333;
+    z-index: 2;
+}
+
+.sapato {
+    background: #111;
+    z-index: 2;
+}
+.olho {
+    background: #000;
+    z-index: 3;
+}
+.b-a{
+    background-color: aqua;
+}
+.b-s{
+    background-color: red;
+}

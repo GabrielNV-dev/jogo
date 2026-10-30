@@ -1,0 +1,52 @@
+
+
+.item-inv {
+    display: grid;
+    grid-template-columns: repeat(10, 4px);
+    grid-template-rows: repeat(10, 4px);
+    position: relative;
+    gap: 0px;
+    position: relative;
+    cursor: grab;
+    transition: filter 0.15s, outline 0.15s;
+}
+
+.item-inv:active {
+    cursor: grabbing;
+}
+
+.item-inv[draggable="true"]:hover {
+    filter: brightness(1.25);
+}
+
+.item-inv.drag-destino {
+    outline: 2px solid #7cff7c;
+    outline-offset: -2px;
+}
+
+.pixel-inv {
+    width: 4px;
+    height: 4px;
+}
+
+.quantidade-item {
+position: absolute;
+right: 2px;
+bottom: 1px;
+z-index: 10;
+
+color: white;
+font-family: Arial, sans-serif;
+font-size: 10px;
+font-weight: bold;
+line-height: 1;
+
+text-shadow:
+    -1px -1px 1px black,
+     1px -1px 1px black,
+    -1px  1px 1px black,
+     1px  1px 1px black;
+
+pointer-events: none;
+
+}

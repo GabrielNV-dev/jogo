@@ -1,0 +1,905 @@
+@charset "UTF-8";
+.branco {
+  background-color: white;
+  z-index: 3;
+}
+
+.preto {
+  background-color: black;
+  z-index: 3;
+}
+
+.cinza-claro {
+  background-color: rgb(150, 150, 150);
+  z-index: 2;
+}
+
+.cinza {
+  background-color: rgb(112, 112, 112);
+  z-index: 2;
+}
+
+.cinza-escuro {
+  background-color: rgb(44, 44, 44);
+  z-index: 2;
+}
+
+.vermelho-efeito {
+  background-color: rgba(255, 0, 0, 0.678);
+}
+
+.arvore {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(10, 3px);
+}
+
+.folhac {
+  background: #17b303;
+  z-index: 4;
+}
+
+.folhas {
+  background: #062901;
+}
+
+.tronco {
+  background: #241901;
+  z-index: 2;
+}
+
+.pedra {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(10, 3px);
+}
+
+.diamante {
+  background-color: #00e5ff;
+  z-index: 2;
+}
+
+.pedra-m {
+  background-color: rgb(150, 150, 150);
+  z-index: 2;
+}
+
+.ferro {
+  background-color: #ffffff;
+  z-index: 2;
+}
+
+.ouro {
+  background-color: #ffd700;
+  z-index: 2;
+}
+
+.carvao {
+  background-color: #1a1a1a;
+  z-index: 2;
+}
+
+.rubi {
+  background-color: #e0002a;
+  z-index: 2;
+}
+
+.obamium {
+  background-color: #7b2cff;
+  z-index: 2;
+}
+
+.esmeralda {
+  background-color: #00c853;
+  z-index: 2;
+}
+
+.prata {
+  background-color: #c0c0c0;
+  z-index: 2;
+}
+
+.grama {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(10, 3px);
+}
+
+.grama-verde {
+  background: #17b303;
+  z-index: 0;
+}
+
+.grama-sombra {
+  background: #062901;
+  z-index: 0;
+}
+
+#hotbar {
+  position: fixed;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: repeat(8, 44px);
+  grid-template-rows: 44px;
+  gap: 4px;
+  padding: 6px;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.6588235294);
+  border: 2px solid #000;
+}
+
+#hotbar.item-inv {
+  width: 44px;
+  height: 44px;
+  box-sizing: border-box;
+  display: grid;
+  place-content: center;
+  position: relative;
+}
+
+#hotbar.pixel-inv {
+  width: 4px;
+  height: 4px;
+  padding: 0;
+  margin: 0;
+}
+
+.selecionado {
+  outline: 1px solid wheat;
+  z-index: 1;
+}
+
+.desktop {
+  position: fixed;
+  display: flex;
+  z-index: 100;
+  right: 10px;
+  bottom: 10px;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-end;
+}
+
+@media screen and (max-width: 800px) {
+  .desktop {
+    bottom: 200px !important;
+  }
+}
+.table2x2,
+.hotbar,
+.inventario {
+  display: none;
+  grid-template-columns: repeat(9, 40px);
+  grid-template-rows: repeat(4, 40px);
+  border: 3px solid #000;
+  background-color: rgba(0, 0, 0, 0.6588235294);
+  gap: 1px;
+  padding: 2px;
+}
+
+#agrupamento {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.item-inv {
+  display: grid;
+  grid-template-columns: repeat(10, 4px);
+  grid-template-rows: repeat(10, 4px);
+  position: relative;
+  gap: 0px;
+  position: relative;
+  cursor: grab;
+  transition: filter 0.15s, outline 0.15s;
+}
+
+.item-inv:active {
+  cursor: grabbing;
+}
+
+.item-inv[draggable=true]:hover {
+  filter: brightness(1.25);
+}
+
+.item-inv.drag-destino {
+  outline: 2px solid #7cff7c;
+  outline-offset: -2px;
+}
+
+.pixel-inv {
+  width: 4px;
+  height: 4px;
+}
+
+.quantidade-item {
+  position: absolute;
+  right: 2px;
+  bottom: 1px;
+  z-index: 10;
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 1;
+  text-shadow: -1px -1px 1px black, 1px -1px 1px black, -1px 1px 1px black, 1px 1px 1px black;
+  pointer-events: none;
+}
+
+#table2x2 {
+  display: none;
+  position: relative;
+  grid-template-columns: repeat(2, 40px);
+  grid-template-rows: repeat(2, 40px);
+  gap: 1px;
+  padding: 2px;
+  border: 3px solid #000;
+  background-color: rgba(0, 0, 0, 0.6588235294);
+}
+
+#table3x3 {
+  display: none;
+  position: fixed;
+  grid-template-columns: repeat(3, 40px);
+  grid-template-rows: repeat(3, 40px);
+  gap: 1px;
+  padding: 2px;
+  border: 3px solid #000;
+  background-color: #000;
+  top: 50%;
+  left: calc(50% + 10px);
+  transform: translate(-100%, -50%);
+  z-index: 999;
+}
+
+#table3x3-result {
+  display: none;
+  position: fixed;
+  grid-template-columns: 40px;
+  grid-template-rows: 40px;
+  gap: 1px;
+  padding: 2px;
+  border: 3px solid #000;
+  background-color: #000;
+  top: 50%;
+  left: calc(50% + 20px);
+  transform: translateY(-50%);
+  z-index: 999;
+}
+
+#result {
+  display: none;
+  position: relative;
+  grid-template-columns: repeat(1, 40px);
+  grid-template-rows: repeat(1, 40px);
+  gap: 1px;
+  padding: 2px;
+  border: 3px solid #000;
+  background-color: rgba(0, 0, 0, 0.6588235294);
+}
+
+.fome {
+  display: flex;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.4666666667);
+  left: 10px;
+  bottom: 0px;
+  justify-content: left;
+  align-items: left;
+  padding: 1px;
+  border: 2px solid #000;
+}
+
+.vida {
+  display: flex;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.4666666667);
+  left: 10px;
+  bottom: 10px;
+  justify-content: left;
+  align-items: left;
+  padding: 1px;
+  border: 2px solid #000;
+}
+
+.infos {
+  position: fixed;
+  display: flex;
+  z-index: 100;
+  left: 10px;
+  bottom: 10px;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.pixel {
+  width: 3px;
+  height: 3px;
+}
+
+.boneco {
+  left: 1250px;
+  top: 900px;
+  display: grid;
+  grid-template-columns: repeat(10, 3px);
+  position: absolute;
+}
+
+.pele {
+  background: #f2b36f;
+  z-index: 3;
+}
+
+.cabelo {
+  background: #4b2a18;
+  z-index: 3;
+}
+
+.roupa {
+  background: #2979ff;
+  z-index: 3;
+}
+
+.calca {
+  background: #333;
+  z-index: 2;
+}
+
+.sapato {
+  background: #111;
+  z-index: 2;
+}
+
+.olho {
+  background: #000;
+  z-index: 3;
+}
+
+.b-a {
+  background-color: aqua;
+}
+
+.b-s {
+  background-color: red;
+}
+
+.nada {
+  background: rgba(51, 51, 51, 0.6588235294);
+}
+
+.madeira-bruta-preto {
+  background-color: black;
+}
+
+.madeira-bruta-marrom {
+  background-color: rgb(56, 37, 1);
+}
+
+.madeira-refinada-preto {
+  background-color: black;
+}
+
+.madeira-refinada-marrom {
+  background-color: rgb(104, 68, 2);
+}
+
+.graveto-cabo {
+  background-color: rgb(97, 61, 4);
+}
+
+.graveto-cabo-claro {
+  background-color: rgb(109, 73, 6);
+}
+
+.picareta-madeira {
+  background-color: rgb(51, 25, 8);
+}
+
+.picareta-pedra {
+  background-color: grey;
+}
+
+.picareta-prata {
+  background-color: rgb(197, 197, 197);
+}
+
+.picareta-ferro {
+  background-color: white;
+}
+
+.picareta-ouro {
+  background-color: yellow;
+}
+
+.picareta-diamante {
+  background-color: rgb(3, 104, 255);
+}
+
+.picareta-esmeralda {
+  background-color: rgb(1, 194, 1);
+}
+
+.picareta-rubi {
+  background-color: rgb(243, 52, 52);
+}
+
+.picareta-obamium {
+  background-color: purple;
+}
+
+.picareta-cabo {
+  background-color: rgb(97, 61, 4);
+}
+
+.picareta-cabo-claro {
+  background-color: rgb(109, 73, 6);
+}
+
+.pedra-borda {
+  background-color: rgb(29, 29, 29);
+}
+
+.pedra-cinza {
+  background-color: grey;
+}
+
+.pedra-rocha {
+  background-color: rgb(53, 52, 52);
+}
+
+.machado-madeira {
+  background-color: rgb(51, 25, 8);
+}
+
+.machado-pedra {
+  background-color: grey;
+}
+
+.machado-prata {
+  background-color: rgb(197, 197, 197);
+}
+
+.machado-ferro {
+  background-color: white;
+}
+
+.machado-ouro {
+  background-color: yellow;
+}
+
+.machado-diamante {
+  background-color: rgb(3, 104, 255);
+}
+
+.machado-esmeralda {
+  background-color: rgb(1, 194, 1);
+}
+
+.machado-rubi {
+  background-color: rgb(243, 52, 52);
+}
+
+.machado-obamium {
+  background-color: purple;
+}
+
+.machado-cabo {
+  background-color: rgb(97, 61, 4);
+}
+
+.machado-cabo-claro {
+  background-color: rgb(109, 73, 6);
+}
+
+.espada-madeira {
+  background-color: rgb(51, 25, 8);
+}
+
+.espada-pedra {
+  background-color: grey;
+}
+
+.espada-prata {
+  background-color: rgb(197, 197, 197);
+}
+
+.espada-ferro {
+  background-color: white;
+}
+
+.espada-ouro {
+  background-color: yellow;
+}
+
+.espada-diamante {
+  background-color: rgb(3, 104, 255);
+}
+
+.espada-esmeralda {
+  background-color: rgb(1, 194, 1);
+}
+
+.espada-rubi {
+  background-color: rgb(243, 52, 52);
+}
+
+.espada-obamium {
+  background-color: purple;
+}
+
+.espada-cabo {
+  background-color: rgb(97, 61, 4);
+}
+
+.espada-cabo-claro {
+  background-color: rgb(109, 73, 6);
+}
+
+.pa-madeira {
+  background-color: rgb(51, 25, 8);
+}
+
+.pa-pedra {
+  background-color: grey;
+}
+
+.pa-prata {
+  background-color: rgb(197, 197, 197);
+}
+
+.pa-ferro {
+  background-color: white;
+}
+
+.pa-ouro {
+  background-color: yellow;
+}
+
+.pa-diamante {
+  background-color: rgb(3, 104, 255);
+}
+
+.pa-esmeralda {
+  background-color: rgb(1, 194, 1);
+}
+
+.pa-rubi {
+  background-color: rgb(243, 52, 52);
+}
+
+.pa-obamium {
+  background-color: purple;
+}
+
+.pa-cabo {
+  background-color: rgb(97, 61, 4);
+}
+
+.pa-cabo-claro {
+  background-color: rgb(109, 73, 6);
+}
+
+.pao-contorno {
+  background-color: #ac7339;
+}
+
+.pao-interno {
+  background-color: #d9a066;
+}
+
+.pao-interno2 {
+  background-color: #c68e56;
+}
+
+.minerio-preto {
+  background-color: black;
+}
+
+.minerio-prata {
+  background-color: rgb(197, 197, 197);
+}
+
+.minerio-ferro {
+  background-color: white;
+}
+
+.minerio-ouro {
+  background-color: yellow;
+}
+
+.minerio-diamante {
+  background-color: rgb(3, 104, 255);
+}
+
+.minerio-esmeralda {
+  background-color: rgb(1, 194, 1);
+}
+
+.minerio-rubi {
+  background-color: rgb(243, 52, 52);
+}
+
+.minerio-obamium {
+  background-color: purple;
+}
+
+.minerio-carvao {
+  background-color: rgb(0, 0, 0);
+}
+
+.craft_table-borda {
+  background-color: rgb(51, 25, 8);
+}
+
+.craft_table-madeira {
+  background-color: rgb(201, 138, 97);
+}
+
+.craft_table-craft {
+  background-color: rgb(170, 95, 45);
+}
+
+.carne_porco-vermelho-cinza {
+  background-color: #830e17;
+}
+
+.carne_porco-vermelho {
+  background-color: #a51f1a;
+}
+
+.carne_porco-vermelho-claro {
+  background-color: #C1545B;
+}
+
+.entidade {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(16, 3px);
+  grid-auto-rows: 3px;
+}
+
+.porco-corpo {
+  background-color: #FFAEC9;
+  z-index: 5;
+}
+
+.porco-sombra {
+  background-color: #A67183;
+  z-index: 5;
+}
+
+.porco-sombra-clara {
+  background-color: #C9899F;
+  z-index: 5;
+}
+
+.porco-olho {
+  background-color: black;
+  z-index: 5;
+}
+
+.porco-sombra-preta {
+  background-color: #6B4954;
+  z-index: 5;
+}
+
+.porco-sombra-cima {
+  background-color: #df94ad;
+  z-index: 5;
+}
+
+.vermelho-claro {
+  background-color: #d95763;
+}
+
+.vermelho-meio-claro {
+  background-color: #ca3b3b;
+}
+
+.vermelho {
+  background-color: #ac3232;
+}
+
+.vermelho-meio-escuro {
+  background-color: #b93838;
+}
+
+.marrom {
+  background-color: #663931;
+}
+
+.tocha-marrom-escuro {
+  background-color: #8F583E;
+}
+
+.tocha-marrom {
+  background-color: #663B32;
+}
+
+.tocha-amarelo-claro {
+  background-color: #F8F55E;
+}
+
+.tocha-amarelo {
+  background-color: #F8F23C;
+}
+
+.tocha-amarelo {
+  background-color: #F8F23C;
+}
+
+.tocha-branco {
+  background-color: #ffffff;
+}
+
+.tocha-laranja {
+  background-color: #DE7634;
+}
+
+#tempo {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  z-index: 20;
+  pointer-events: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  margin: 0px;
+  height: 100vh;
+  display: flex;
+  background-color: rgba(9, 68, 1, 0.87);
+}
+
+#morte {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 0, 0, 0.5);
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  color: white;
+  font-size: 32px;
+}
+
+#morte button {
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Controles fixos na tela */
+.controles {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 60px);
+  grid-template-rows: repeat(3, 60px);
+  gap: 8px;
+  z-index: 99999;
+  align-items: center;
+  justify-items: center;
+  touch-action: manipulation;
+}
+
+/* Todos os botões */
+.mover {
+  width: 60px;
+  height: 60px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2509803922);
+  border-radius: 14px;
+  background: linear-gradient(145deg, #6366f1, #4338ca);
+  color: white;
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3333333333);
+  cursor: pointer;
+  -moz-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: transform 0.1s, filter 0.1s;
+}
+
+.mover:hover {
+  filter: brightness(1.15);
+}
+
+.mover:active {
+  transform: scale(0.9);
+  filter: brightness(0.85);
+}
+
+/* Primeira linha: ações */
+#tab {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+#interagir {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+#comer {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+/* Direcional: formato de cruz */
+#cima {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+#esquerda {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+#baixo {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+#direita {
+  grid-column: 3;
+  grid-row: 3;
+}
+
+/* Telas menores */
+@media (max-width: 981px) {
+  .controles {
+    right: 12px;
+    bottom: 12px;
+    grid-template-columns: repeat(3, 52px);
+    grid-template-rows: repeat(3, 52px);
+    gap: 6px;
+  }
+  .mover {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    font-size: 22px;
+  }
+}
+/* Celulares bem pequenos */
+@media (max-width: 360px) {
+  .controles {
+    right: 8px;
+    bottom: 8px;
+    grid-template-columns: repeat(3, 44px);
+    grid-template-rows: repeat(3, 44px);
+    gap: 5px;
+  }
+  .mover {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    font-size: 19px;
+  }
+}/*# sourceMappingURL=index.css.map */
